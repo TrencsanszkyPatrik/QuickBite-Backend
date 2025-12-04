@@ -1,0 +1,214 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2025. Dec 04. 09:18
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Adatbázis: `quickbite`
+--
+CREATE DATABASE IF NOT EXISTS `quickbite` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci;
+USE `quickbite`;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `icon` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `icon`) VALUES
+(1, 'Olasz', '🍝'),
+(2, 'Magyar', '🫕'),
+(3, 'Pub', '🍺'),
+(4, 'Ázsiai', '🍜'),
+(5, 'Mexikói', '🌮');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `restaurants`
+--
+
+DROP TABLE IF EXISTS `restaurants`;
+CREATE TABLE `restaurants` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `address` text NOT NULL,
+  `city` text NOT NULL,
+  `description` text NOT NULL,
+  `description_long` text NOT NULL,
+  `image_url` text NOT NULL,
+  `discount` int(11) NOT NULL,
+  `free_delivery` tinyint(1) NOT NULL,
+  `accept_cards` tinyint(1) NOT NULL,
+  `cuisine_id` int(11) NOT NULL,
+  `latitude` decimal(10,0) NOT NULL,
+  `longitude` decimal(10,0) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `restaurants`
+--
+
+INSERT INTO `restaurants` (`id`, `name`, `address`, `city`, `description`, `description_long`, `image_url`, `discount`, `free_delivery`, `accept_cards`, `cuisine_id`, `latitude`, `longitude`, `created_at`) VALUES
+(1, 'Anyukám Mondta', 'Petőfi Sándor út 57.', 'Encs', 'Kedvelt olasz étterem Miskolc közelében.', 'Autentikus olasz tészták, pizzák és desszertek, családias hangulatban.', '/img/etteremkepek/langolo-rostely.png', 20, 0, 1, 1, 48, 21, '2025-12-04 07:51:21'),
+(2, 'Végállomás Bistorant', 'Dorottya u. 1.', 'Miskolc', 'Modern magyar konyha, helyi alapanyagokkal.', 'Fine dining élmény, újragondolt magyar fogásokkal és kiváló borlappal.', '/img/etteremkepek/langolo-rostely.png', 10, 1, 1, 2, 48, 21, '2025-12-04 07:51:21'),
+(3, 'Zip\'s Brewhouse', 'Arany János tér 1.', 'Miskolc', 'Kézműves sörök és gasztro pub.', 'Saját főzésű sörök, pub klasszikusok és street food modern tálalásban.', '/img/etteremkepek/langolo-rostely.png', 0, 1, 1, 3, 48, 21, '2025-12-04 07:51:21'),
+(4, 'Calypso Kisvendéglő', 'Görgey Artúr u. 23.', 'Miskolc', 'Hagyományos magyar ételek barátságos környezetben.', 'Családias vendéglő, házias ízek, nagy adagok, kedvező árak.', '/img/etteremkepek/langolo-rostely.png', 0, 1, 1, 2, 48, 21, '2025-12-04 07:51:21');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `reviews`
+--
+
+DROP TABLE IF EXISTS `reviews`;
+CREATE TABLE `reviews` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
+  `rating` tinyint(4) NOT NULL,
+  `comment` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `user_id`, `restaurant_id`, `rating`, `comment`, `created_at`) VALUES
+(1, 1, 1, 5, 'Fantasztikus tészták és kedves személyzet.', '2025-12-04 06:51:21'),
+(2, 2, 2, 4, 'Nagyon finom ételek, kicsit drágább árak.', '2025-12-04 06:51:21'),
+(3, 3, 3, 5, 'Klassz sörök, remek hangulat.', '2025-12-04 06:51:21'),
+(4, 1, 4, 4, 'Tipikus magyar fogások, nagy adagok.', '2025-12-04 06:51:21');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`) VALUES
+(1, 'Kiss Anna', 'anna@example.com', '$2a$10$dummyhash1', '2025-12-04'),
+(2, 'Nagy Péter', 'peter@example.com', '$2a$10$dummyhash2', '2025-12-04'),
+(3, 'Szabó Luca', 'luca@example.com', '$2a$10$dummyhash3', '2025-12-04');
+
+--
+-- Indexek a kiírt táblákhoz
+--
+
+--
+-- A tábla indexei `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- A tábla indexei `restaurants`
+--
+ALTER TABLE `restaurants`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_restaurants_category` (`cuisine_id`);
+
+--
+-- A tábla indexei `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_reviews_user` (`user_id`),
+  ADD KEY `fk_reviews_restaurant` (`restaurant_id`);
+
+--
+-- A tábla indexei `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`) USING HASH;
+
+--
+-- A kiírt táblák AUTO_INCREMENT értéke
+--
+
+--
+-- AUTO_INCREMENT a táblához `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT a táblához `restaurants`
+--
+ALTER TABLE `restaurants`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT a táblához `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT a táblához `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Megkötések a kiírt táblákhoz
+--
+
+--
+-- Megkötések a táblához `restaurants`
+--
+ALTER TABLE `restaurants`
+  ADD CONSTRAINT `fk_restaurants_category` FOREIGN KEY (`cuisine_id`) REFERENCES `categories` (`id`) ON UPDATE CASCADE;
+
+--
+-- Megkötések a táblához `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `fk_reviews_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`),
+  ADD CONSTRAINT `fk_reviews_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
