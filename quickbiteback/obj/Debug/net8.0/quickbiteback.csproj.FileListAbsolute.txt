@@ -268,3 +268,4 @@ C:\Users\trenc\source\repos\quickbiteback\quickbiteback\obj\Debug\net8.0\quickbi
 C:\Users\trenc\source\repos\quickbiteback\quickbiteback\obj\Debug\net8.0\quickbiteback.genruntimeconfig.cache
 C:\Users\trenc\source\repos\quickbiteback\quickbiteback\obj\Debug\net8.0\ref\quickbiteback.dll
 C:\Users\trenc\source\repos\quickbiteback\quickbiteback\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\trenc\source\repos\quickbiteback\quickbiteback\obj\Debug\net8.0\quickbiteback.sourcelink.json

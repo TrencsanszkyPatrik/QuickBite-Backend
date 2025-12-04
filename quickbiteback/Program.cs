@@ -14,6 +14,19 @@ namespace quickbiteback
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            // CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("QuickbiteCors", policy =>
+                {
+                    policy
+                        .WithOrigins("http://localhost:3000") // React app
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -27,6 +40,8 @@ namespace quickbiteback
                 app.UseSwaggerUI();
             }
 
+
+            app.UseCors("QuickbiteCors");
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
