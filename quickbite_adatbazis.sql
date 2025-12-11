@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Dec 10. 11:21
--- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.2.12
+-- Létrehozás ideje: 2025. Dec 11. 07:52
+-- Kiszolgáló verziója: 10.4.28-MariaDB
+-- PHP verzió: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,6 +45,51 @@ INSERT INTO `categories` (`id`, `name`, `icon`) VALUES
 (3, 'Pub', '🍺'),
 (4, 'Ázsiai', '🍜'),
 (5, 'Mexikói', '🌮');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `menu`
+--
+
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `description` text DEFAULT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `is_available` tinyint(1) DEFAULT 1,
+  `image_url` text DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `menu`
+--
+
+INSERT INTO `menu` (`id`, `restaurant_id`, `category`, `name`, `description`, `price`, `is_available`, `image_url`, `created_at`) VALUES
+(1, 1, 'Pizza', 'Margherita', 'Klasszikus olasz pizza paradicsomszósszal, mozzarella sajttal és bazsalikommal', 2890.00, 1, '/img/menu/margherita.jpg', '2025-12-11 07:50:55'),
+(2, 1, 'Pizza', 'Pepperoni', 'Sajtos pizza extra pepperoni kolbásszal', 3490.00, 1, '/img/menu/pepperoni.jpg', '2025-12-11 07:50:55'),
+(3, 1, 'Pizza', 'Quattro Formaggi', 'Négyféle sajt: mozzarella, gorgonzola, parmezán, emmentáli', 3890.00, 1, NULL, '2025-12-11 07:50:55'),
+(4, 1, 'Tészta', 'Spaghetti Carbonara', 'Hagyományos carbonara tojássárgával, guanciale szalonnával és parmezánnal', 3290.00, 1, '/img/menu/carbonara.jpg', '2025-12-11 07:50:55'),
+(5, 1, 'Tészta', 'Lasagne Bolognese', 'Házi lasagne húsos raguval és besamel mártással', 3590.00, 1, NULL, '2025-12-11 07:50:55'),
+(6, 1, 'Desszert', 'Tiramisu', 'Klasszikus olasz tiramisu mascarpone krémmel és kávéval', 1490.00, 1, NULL, '2025-12-11 07:50:55'),
+(7, 1, 'Italok', 'Espresso', 'Erős olasz kávé', 690.00, 1, NULL, '2025-12-11 07:50:55'),
+(8, 2, 'Levesek', 'Gulyásleves', 'Hagyományos bográcsgulyás házi csipetkével', 1890.00, 1, '/img/menu/gulyasleves.jpg', '2025-12-11 07:50:55'),
+(9, 2, 'Főételek', 'Marhapörkölt nokedlivel', 'Lágy marhapörkölt házi nokedlivel és savanyú uborkával', 3290.00, 1, NULL, '2025-12-11 07:50:55'),
+(10, 2, 'Főételek', 'Kacsamell vörösboros mártással', 'Ropogósra sütött kacsamell vörösboros mártással és párolt káposztával', 3990.00, 1, NULL, '2025-12-11 07:50:55'),
+(11, 2, 'Desszert', 'Somlói galuska', 'Hagyományos somlói galuska csokoládéval és tejszínhabbal', 1590.00, 1, NULL, '2025-12-11 07:50:55'),
+(12, 3, 'Pub Klasszikusok', 'Hagymakarikák', 'Rántott hagymakarikák házi tartármártással', 1490.00, 1, NULL, '2025-12-11 07:50:55'),
+(13, 3, 'Pub Klasszikusok', 'Csirkeszárny BBQ mártásban', 'Fűszeres csirkeszárnyak BBQ szósszal', 2290.00, 1, NULL, '2025-12-11 07:50:55'),
+(14, 3, 'Burger', 'Classic Cheeseburger', 'Marhahúsos burger cheddar sajttal, salátával, paradicsommal és hagymával', 2890.00, 1, '/img/menu/burger.jpg', '2025-12-11 07:50:55'),
+(15, 3, 'Italok', 'Ház sör 0,5l', 'Zip\'s saját főzésű IPA vagy lager', 990.00, 1, NULL, '2025-12-11 07:50:55'),
+(16, 3, 'Italok', 'Kézműves IPA 0,5l', 'Citrusos, komlós IPA', 1190.00, 1, NULL, '2025-12-11 07:50:55'),
+(17, 4, 'Levesek', 'Húsleves', 'Hagyományos húsleves finom tésztával és zöldségekkel', 1290.00, 1, NULL, '2025-12-11 07:50:55'),
+(18, 4, 'Főételek', 'Sertéspörkölt galuskával', 'Házias sertéspörkölt galuskával és savanyúsággal', 2590.00, 1, NULL, '2025-12-11 07:50:55'),
+(19, 4, 'Főételek', 'Rántott csirkecomb', 'Ropogós rántott csirkecomb burgonyapürével és salátával', 2690.00, 1, NULL, '2025-12-11 07:50:55'),
+(20, 4, 'Desszert', 'Túrógombóc', 'Házi túrógombóc vaníliás tejjel', 1290.00, 1, NULL, '2025-12-11 07:50:55'),
+(21, 4, 'Italok', 'Ásványvíz 0,5l', 'Forrásvíz szénsavval vagy anélkül', 490.00, 1, NULL, '2025-12-11 07:50:55');
 
 -- --------------------------------------------------------
 
@@ -169,6 +214,13 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- A tábla indexei `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_menu_restaurant` (`restaurant_id`);
+
+--
 -- A tábla indexei `quickbite_reviews`
 --
 ALTER TABLE `quickbite_reviews`
@@ -207,6 +259,12 @@ ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT a táblához `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- AUTO_INCREMENT a táblához `quickbite_reviews`
 --
 ALTER TABLE `quickbite_reviews`
@@ -235,6 +293,12 @@ ALTER TABLE `users`
 --
 
 --
+-- Megkötések a táblához `menu`
+--
+ALTER TABLE `menu`
+  ADD CONSTRAINT `fk_menu_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Megkötések a táblához `restaurants`
 --
 ALTER TABLE `restaurants`
@@ -251,4 +315,5 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
 
