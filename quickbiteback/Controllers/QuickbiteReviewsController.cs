@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using quickbiteback.Models;
+using quickbiteback.Models.Dtos;
 
 namespace quickbiteback.Controllers
 {
@@ -19,6 +20,22 @@ namespace quickbiteback.Controllers
         public async Task<ActionResult<IEnumerable<quickbitereviews>>> GetALlReviws()
         {
             return await _context.quickbitereviews.ToListAsync();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<quickbitereviews>> PostReview(AddNewReviewDto review)
+        {
+        
+            _context.quickbitereviews.Add(new quickbitereviews
+            {
+                Name = review.Name,
+                Username = review.Username,
+                Text = review.Review,
+                Stars = (sbyte)review.Stars
+            });
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetALlReviws", new { }, review);
+
         }
 
     }
