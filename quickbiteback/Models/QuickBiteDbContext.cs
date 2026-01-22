@@ -21,6 +21,7 @@ namespace quickbiteback.Models
         public virtual DbSet<restaurants> restaurants { get; set; }
         public virtual DbSet<reviews> reviews { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<menu_items> menu_items { get; set; }
 
         // === CONNECTION STRING ===
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -112,6 +113,22 @@ namespace quickbiteback.Models
 
                 entity.Property(e => e.created_at)
                       .HasDefaultValueSql("'current_timestamp()'");
+            });
+
+            // ---- menu_items ----
+            modelBuilder.Entity<menu_items>(entity =>
+            {
+                entity.HasKey(e => e.id).HasName("PRIMARY");
+
+                entity.ToTable("menu_items");
+
+                entity.Property(e => e.created_at)
+                      .HasDefaultValueSql("'current_timestamp()'");
+
+                entity.HasOne(d => d.restaurant)
+                    .WithMany(p => p.menu_items)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("fk_menu_items_restaurant");
             });
 
             OnModelCreatingPartial(modelBuilder);

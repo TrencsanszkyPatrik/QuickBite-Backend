@@ -56,4 +56,7 @@ public partial class restaurants
 
     [InverseProperty("restaurant")]
     public virtual ICollection<reviews> reviews { get; set; } = new List<reviews>();
+
+    [InverseProperty("restaurant")]
+    public virtual ICollection<menu_items> menu_items { get; set; } = new List<menu_items>();
 }

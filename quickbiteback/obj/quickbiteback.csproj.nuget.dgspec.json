@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\trenc\\source\\repos\\TrencsanszkyPatrik\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj": {}
+    "C:\\QUICKBITE\\backend\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj": {}
   },
   "projects": {
-    "C:\\Users\\trenc\\source\\repos\\TrencsanszkyPatrik\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj": {
+    "C:\\QUICKBITE\\backend\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\trenc\\source\\repos\\TrencsanszkyPatrik\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj",
+        "projectUniqueName": "C:\\QUICKBITE\\backend\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj",
         "projectName": "quickbiteback",
-        "projectPath": "C:\\Users\\trenc\\source\\repos\\TrencsanszkyPatrik\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj",
+        "projectPath": "C:\\QUICKBITE\\backend\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj",
         "packagesPath": "C:\\Users\\trenc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\trenc\\source\\repos\\TrencsanszkyPatrik\\QuickBite-Backend\\quickbiteback\\obj\\",
+        "outputPath": "C:\\QUICKBITE\\backend\\QuickBite-Backend\\quickbiteback\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
