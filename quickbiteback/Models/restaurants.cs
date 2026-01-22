@@ -50,6 +50,8 @@ public partial class restaurants
     [Column(TypeName = "datetime")]
     public DateTime created_at { get; set; }
 
+    public string phonenumber { get; set; }
+
     [ForeignKey("cuisine_id")]
     [InverseProperty("restaurants")]
     public virtual categories cuisine { get; set; } = null!;

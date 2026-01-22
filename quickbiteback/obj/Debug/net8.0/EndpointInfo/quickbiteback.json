@@ -43,6 +43,240 @@
         }
       }
     },
+    "/api/MenuItems": {
+      "get": {
+        "tags": [
+          "MenuItems"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/menu_items"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/menu_items"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/menu_items"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "MenuItems"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/menu_items"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/menu_items"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/menu_items"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/menu_items"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/menu_items"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/menu_items"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MenuItems/restaurant/{restaurantId}": {
+      "get": {
+        "tags": [
+          "MenuItems"
+        ],
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/menu_items"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/menu_items"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/menu_items"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MenuItems/{id}": {
+      "get": {
+        "tags": [
+          "MenuItems"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/menu_items"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/menu_items"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/menu_items"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "MenuItems"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/menu_items"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/menu_items"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/menu_items"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "MenuItems"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/QuickbiteReviews": {
       "get": {
         "tags": [
@@ -362,6 +596,50 @@
         },
         "additionalProperties": false
       },
+      "menu_items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "restaurant_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "image_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "is_available": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "restaurant": {
+            "$ref": "#/components/schemas/restaurants"
+          }
+        },
+        "additionalProperties": false
+      },
       "quickbitereviews": {
         "type": "object",
         "properties": {
@@ -449,6 +727,10 @@
             "type": "string",
             "format": "date-time"
           },
+          "phonenumber": {
+            "type": "string",
+            "nullable": true
+          },
           "cuisine": {
             "$ref": "#/components/schemas/categories"
           },
@@ -456,6 +738,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/reviews"
+            },
+            "nullable": true
+          },
+          "menu_items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/menu_items"
             },
             "nullable": true
           }
