@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 26. 13:56
--- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.0.30
+-- Host: 127.0.0.1
+-- Generation Time: Jan 26, 2026 at 05:21 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `quickbite`
+-- Database: `quickbite`
 --
 CREATE DATABASE IF NOT EXISTS `quickbite` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `quickbite`;
@@ -26,7 +26,7 @@ USE `quickbite`;
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `categories`
+-- Table structure for table `categories`
 --
 
 DROP TABLE IF EXISTS `categories`;
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`, `icon`) VALUES
@@ -50,12 +50,12 @@ INSERT INTO `categories` (`id`, `name`, `icon`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `menu_items`
+-- Table structure for table `menu_items`
 --
 
 DROP TABLE IF EXISTS `menu_items`;
 CREATE TABLE IF NOT EXISTS `menu_items` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `restaurant_id` int(11) NOT NULL,
   `name` text NOT NULL,
   `description` text DEFAULT NULL,
@@ -63,15 +63,16 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   `image_url` text DEFAULT NULL,
   `category` text DEFAULT NULL,
   `is_available` tinyint(1) NOT NULL DEFAULT 1,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `menu_items`
+-- Dumping data for table `menu_items`
 --
 
 INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`, `image_url`, `category`, `is_available`, `created_at`) VALUES
-(1, 1, 'Margherita pizza', 'Paradicsomos, mozzarellás klasszikus.', 2490, '/img/EtelKepek/margarita.jpg', 'Pizza', 1, '2026-01-23 21:23:21'),
+(1, 1, 'Margherita pizza', 'Paradicsomos, mozzarellás klasszikus.', 2490, '/img/EtelKepek/MargaretaPizza.png', 'Pizza', 1, '2026-01-23 21:23:21'),
 (2, 1, 'Carbonara spagetti', 'Krémes, szalonnás tészta.', 2890, '/img/EtelKepek/CarbonaraSpagetti.png', 'Tészta', 1, '2026-01-23 21:23:21'),
 (3, 1, 'Tiramisu', 'Olasz desszert, kávéval és mascarponéval.', 1690, '/img/EtelKepek/Tiramisu.png', 'Desszert', 1, '2026-01-23 21:23:21'),
 (4, 1, 'Quattro Stagioni pizza', 'Négy évszak íze: sonka, gomba, articsóka, olajbogyó.', 3290, '/img/EtelKepek/QUATTRO-STAGIONI-PIZZA-4.jpg', 'Pizza', 1, '2026-01-23 21:23:21'),
@@ -89,7 +90,7 @@ INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`,
 (16, 2, 'Halászlé', 'Fűszeres halászlé, friss halból.', 3290, '/img/EtelKepek/szegedi-halaszle-filezett-halak.jpg', 'Leves', 1, '2026-01-23 21:23:21'),
 (17, 2, 'Pörkölt', 'Marha vagy sertés pörkölt, galuskával.', 2790, '/img/EtelKepek/Sertesporkolt.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
 (18, 2, 'Rakott krumpli', 'Házias rakott krumpli, kolbásszal.', 2190, '/img/EtelKepek/RakottKrumpli.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
-(19, 2, 'Túrós csusza', 'Friss túróval és szalonnával.', 1990, '/img/EtelKepek/Turos-csusza-scaled.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
+(19, 2, 'Túrós csusza', 'Friss túróval és szalonnával.', 1990, '/img/EtelKepek/Túrós-csusza-scaled.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
 (20, 2, 'Dobos torta', 'Klasszikus magyar torta.', 1290, '/img/EtelKepek/dobostorta.jpg', 'Desszert', 1, '2026-01-23 21:23:21'),
 (21, 2, 'Rétes', 'Almás vagy túrós rétes.', 990, '/img/EtelKepek/retes.jpg', 'Desszert', 1, '2026-01-23 21:23:21'),
 (22, 3, 'BBQ burger', 'Füstös BBQ szósz, szaftos hús.', 3190, '/img/EtelKepek/BbqBurger.png', 'Burger', 1, '2026-01-23 21:23:21'),
@@ -101,49 +102,49 @@ INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`,
 (28, 3, 'Csirkeszárny', 'Fűszeres sült csirkeszárny, BBQ mártással.', 2490, '/img/EtelKepek/csirkeszarny.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
 (29, 3, 'Nachos', 'Ropogós tortilla chips, sajttal és jalapeñóval.', 1890, '/img/EtelKepek/Nachos.jpg', 'Előétel', 1, '2026-01-23 21:23:21'),
 (30, 3, 'Sült hagyma karikák', 'Ropogós panírozott hagyma, mártással.', 1490, '/img/EtelKepek/sulthagymakarikak.jpg', 'Előétel', 1, '2026-01-23 21:23:21'),
-(31, 3, 'IPA sör', 'Keserű, aromás IPA sör.', 1390, '/img/EtelKepek/ipa.jpg', 'Ital', 1, '2026-01-23 21:23:21'),
+(31, 3, 'IPA sör', 'Keserű, aromás IPA sör.', 1390, '/img/EtelKepek/IpaSor.png', 'Ital', 1, '2026-01-23 21:23:21'),
 (32, 3, 'Stout sör', 'Sötét, krémes stout sör.', 1390, '/img/EtelKepek/Stadin_Panimo_Double_Oat_Malt_Stout.jpg', 'Ital', 1, '2026-01-23 21:23:21'),
 (33, 4, 'Húsleves', 'Házi, gazdag húsleves.', 1790, '/img/EtelKepek/Husleves.png', 'Leves', 1, '2026-01-23 21:23:21'),
 (34, 4, 'Palacsinta', 'Töltött, édes palacsinta.', 990, '/img/EtelKepek/Palacsinta.png', 'Desszert', 1, '2026-01-23 21:23:21'),
 (35, 4, 'Bableves', 'Hagyományos bableves, füstölt hússal.', 1890, '/img/EtelKepek/Bableves.jpg', 'Leves', 1, '2026-01-23 21:23:21'),
-(36, 4, 'Sertésszelet', 'Sült sertésszelet, sült burgonyával.', 2690, '/img/EtelKepek/default.png', 'Főétel', 1, '2026-01-23 21:23:21'),
-(37, 4, 'Lecsó', 'Friss zöldségekből készült lecsó, tojással.', 1990, '/img/EtelKepek/Lecsowebp.webp', 'Főétel', 1, '2026-01-23 21:23:21'),
+(36, 4, 'Sertésszelet', 'Sült sertésszelet, sült burgonyával.', 2690, '/img/EtelKepek/Sertesszelet.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
+(37, 4, 'Lecsó', 'Friss zöldségekből készült lecsó, tojással.', 1990, '/img/EtelKepek/Lecso.webp', 'Főétel', 1, '2026-01-23 21:23:21'),
 (38, 4, 'Rántott sajt', 'Ropogós rántott sajt, tartármártással.', 2190, '/img/EtelKepek/rantottsajt.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
 (39, 4, 'Káposztás tészta', 'Friss káposztával készült tészta.', 1790, '/img/EtelKepek/KaposztasTeszta.webp', 'Főétel', 1, '2026-01-23 21:23:21'),
 (40, 4, 'Gesztenyepüré', 'Édes gesztenyepüré, tejszínhabbal.', 1190, '/img/EtelKepek/gesztenyepure.jpg', 'Desszert', 1, '2026-01-23 21:23:21'),
 (41, 17, 'Mangalica pörkölt', 'Prémium mangalica hús, galuskával.', 4290, '/img/EtelKepek/MangalicaPorkolt.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
-(42, 17, 'Libamáj', 'Sült libamáj, hagymás körettel.', 3890, '/img/EtelKepek/16.-LIBAMÁJ-02.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
+(42, 17, 'Libamáj', 'Sült libamáj, hagymás körettel.', 3890, '/img/EtelKepek/libamaj.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
 (43, 17, 'Kacsacomb', 'Sült kacsacomb, vörös káposztával.', 4490, '/img/EtelKepek/Kacsacomb.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
 (44, 17, 'Házi kolbász', 'Füstölt házi kolbász, mustárral.', 2790, '/img/EtelKepek/erdelyi-kolbasz.webp', 'Főétel', 1, '2026-01-23 21:23:21'),
 (45, 17, 'Borleves', 'Hagyományos borleves, fahéjjal.', 1890, '/img/EtelKepek/BorLeves.jpg', 'Leves', 1, '2026-01-23 21:23:21'),
 (46, 17, 'Kézműves sör', 'Helyi kézműves sör.', 1490, '/img/EtelKepek/kezmuves-sor-Kandallo-1024x683.jpg', 'Ital', 1, '2026-01-23 21:23:21'),
-(47, 18, 'Grillezett marhahús', 'Prémium marhahús, friss zöldségekkel.', 4990, '/img/EtelKepek/GrillezettMarhahus.webp', 'Főétel', 1, '2026-01-23 21:23:21'),
-(48, 18, 'Grillezett csirkemell', 'Fűszeres grillezett csirkemell.', 3290, '/img/EtelKepek/grillcsirkecs.png', 'Főétel', 1, '2026-01-23 21:23:21'),
-(49, 18, 'Friss salátabár', 'Választékos salátabár, többféle öntettel.', 2490, '/img/EtelKepek/SalataBar.jpg', 'Előétel', 1, '2026-01-23 21:23:21'),
-(50, 18, 'Sushi tál', 'Választékos sushi keverék.', 3890, '/img/EtelKepek/Sushi.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
-(51, 18, 'Desszert bár', 'Különféle desszertek választéka.', 1990, '/img/EtelKepek/default.png', 'Desszert', 1, '2026-01-23 21:23:21'),
-(52, 18, 'Korlátlan házi limonádé', 'Friss házi limonádé.', 990, '/img/EtelKepek/házi limonádé.jpg', 'Ital', 1, '2026-01-23 21:23:21'),
+(47, 18, 'Grillezett marhahús', 'Prémium marhahús, friss zöldségekkel.', 4990, '/img/EtelKepek/GrillezettMarhahús.webp', 'Főétel', 1, '2026-01-23 21:23:21'),
+(48, 18, 'Grillezett csirkemell', 'Fűszeres grillezett csirkemell.', 3290, '/img/EtelKepek/grillicsirkecsecs.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
+(49, 18, 'Friss salátabár', 'Választékos salátabár, többféle öntettel.', 2490, '/img/EtelKepek/SalátaBar.png', 'Előétel', 1, '2026-01-23 21:23:21'),
+(50, 18, 'Sushi tál', 'Választékos sushi keverék.', 22790, '/img/EtelKepek/SushiBar.png', 'Főétel', 1, '2026-01-23 21:23:21'),
+(51, 18, 'Desszert bár', 'Különféle desszertek választéka.', 1990, '/img/EtelKepek/DesszertBar.png', 'Desszert', 1, '2026-01-23 21:23:21'),
+(52, 18, 'Korlátlan házi limonádé', 'Friss házi limonádé. Kizárólag helyben fogyasztás esetén korlátlan.', 990, '/img/EtelKepek/házi limonádé.jpg', 'Ital', 1, '2026-01-23 21:23:21'),
 (53, 19, 'Sashimi mix', 'Friss sashimi választék: tonhal, lazac, tengeri sügér.', 4590, '/img/EtelKepek/sashimi.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
 (54, 19, 'Nigiri mix', 'Különféle nigiri: tonhal, lazac, rák, tintahal.', 4290, '/img/EtelKepek/nigiri-mix.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
 (55, 19, 'California roll', 'Rák, avokádó, uborka, kaviár.', 2890, '/img/EtelKepek/californiarolls.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
-(56, 19, 'Philadelphia roll', 'Lazac, sajt, avokádó.', 3190, '/img/EtelKepek/default.png', 'Főétel', 1, '2026-01-23 21:23:21'),
-(57, 19, 'Tempura rák', 'Ropogós tempura rák, szójamártással.', 3490, '/img/EtelKepek/tempurarak.webp', 'Főétel', 1, '2026-01-23 21:23:21'),
+(56, 19, 'Philadelphia roll', 'Lazac, sajt, avokádó.', 3190, '/img/EtelKepek/PhiladelphiaRoll.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
+(57, 19, 'Tempura rák', 'Ropogós tempura rák, szójamártással.', 3490, '/img/EtelKepek/Tempurarak.png', 'Főétel', 1, '2026-01-23 21:23:21'),
 (58, 19, 'Miso leves', 'Hagyományos miso leves, tofuval.', 1490, '/img/EtelKepek/miso-soup-a-japan-konyha-gyongyszeme-milestone66.jpg', 'Leves', 1, '2026-01-23 21:23:21'),
 (59, 19, 'Edamame', 'Főtt szójabab, sóval.', 1190, '/img/EtelKepek/edameme.jpg', 'Előétel', 1, '2026-01-23 21:23:21'),
 (60, 19, 'Zöld tea', 'Autentikus japán zöld tea.', 890, '/img/EtelKepek/zoldtea.jpg', 'Ital', 1, '2026-01-23 21:23:21'),
-(61, 20, 'Taco mix', '3 db taco: marha, csirke, sertés.', 3290, '/img/EtelKepek/tacoMix.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
+(61, 20, 'Taco mix', '3 db taco: marha, csirke, sertés.', 3290, '/img/EtelKepek/TacoMix.png', 'Főétel', 1, '2026-01-23 21:23:21'),
 (62, 20, 'Burrito', 'Nagy burrito, marhahússal, babbal, rizzsel.', 2790, '/img/EtelKepek/burrito.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
 (63, 20, 'Quesadilla', 'Sült tortilla, sajttal és csirkével.', 2490, '/img/EtelKepek/quesadilla.jpeg', 'Főétel', 1, '2026-01-23 21:23:21'),
 (64, 20, 'Guacamole', 'Friss avokádó, lime-dzsel és fokhagymával.', 1490, '/img/EtelKepek/Guacamole.jpg', 'Előétel', 1, '2026-01-23 21:23:21'),
 (65, 20, 'Ceviche', 'Friss hal, lime-dzsel, hagymával és korianderrel.', 3290, '/img/EtelKepek/ceviche.jpg', 'Előétel', 1, '2026-01-23 21:23:21'),
 (66, 20, 'Chilaquiles', 'Ropogós tortilla chips, tojással és szósszal.', 2190, '/img/EtelKepek/Chilaquiles.jpg', 'Főétel', 1, '2026-01-23 21:23:21'),
 (67, 20, 'Horchata', 'Házi készítésű horchata.', 1190, '/img/EtelKepek/horchata.jpg', 'Ital', 1, '2026-01-23 21:23:21'),
-(68, 20, 'Margarita', 'Klasszikus margarita koktél.', 1890, '/img/EtelKepek/default.png', 'Ital', 1, '2026-01-23 21:23:21');
+(68, 20, 'Margarita', 'Klasszikus margarita koktél.', 1890, '/img/EtelKepek/margarita.jpg', 'Ital', 1, '2026-01-23 21:23:21');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `quickbite_reviews`
+-- Table structure for table `quickbite_reviews`
 --
 
 DROP TABLE IF EXISTS `quickbite_reviews`;
@@ -155,10 +156,10 @@ CREATE TABLE IF NOT EXISTS `quickbite_reviews` (
   `stars` tinyint(4) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `quickbite_reviews`
+-- Dumping data for table `quickbite_reviews`
 --
 
 INSERT INTO `quickbite_reviews` (`id`, `username`, `name`, `text`, `stars`, `created_at`) VALUES
@@ -176,12 +177,13 @@ INSERT INTO `quickbite_reviews` (`id`, `username`, `name`, `text`, `stars`, `cre
 (12, 'korizoltan1965', 'Kori Zoltán', 'Áttekinthető, könnyen kezelhető webshop, gyors rendelési folyamattal. A kínálat jól strukturált, az ételek leírása érthető, a fizetés pedig zökkenőmentes. Összességében kényelmes és felhasználóbarát megoldás ételrendeléshez.', 5, '2026-01-26 10:57:27'),
 (13, 'korizoltan1965', 'Kori Zoltán', 'A webshop modern megjelenésű és jól átlátható, a rendelés leadása gyors és egyszerű. Az ételek részletesen vannak bemutatva, a felület pedig gördülékenyen működik. Kellemes élmény az online rendelés.', 5, '2026-01-26 10:58:26'),
 (25, 'korizoltan1965', 'Kori Zoltán', 'A webshop modern megjelenésű és jól átlátható, a rendelés leadása gyors és egyszerű. Az ételek részletesen vannak bemutatva, a felület pedig gördülékenyen működik. Kellemes élmény az online rendelés.', 5, '2026-01-26 10:59:01'),
-(26, 'padmin', 'Patrik Admin', 'Nagyon szuper weboldal!', 5, '2026-01-26 13:46:58');
+(26, 'padmin', 'Patrik Admin', 'Nagyon szuper weboldal!', 5, '2026-01-26 13:46:58'),
+(27, 'korizoltan1965', 'Kori Zoltán', 'Nagyon elégedett voltam mindennel!', 5, '2026-01-26 16:25:51');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `restaurants`
+-- Table structure for table `restaurants`
 --
 
 DROP TABLE IF EXISTS `restaurants`;
@@ -204,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `restaurants` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `restaurants`
+-- Dumping data for table `restaurants`
 --
 
 INSERT INTO `restaurants` (`id`, `name`, `address`, `city`, `description`, `description_long`, `phonenumber`, `image_url`, `discount`, `free_delivery`, `accept_cards`, `cuisine_id`, `latitude`, `longitude`, `created_at`) VALUES
@@ -220,7 +222,7 @@ INSERT INTO `restaurants` (`id`, `name`, `address`, `city`, `description`, `desc
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `reviews`
+-- Table structure for table `reviews`
 --
 
 DROP TABLE IF EXISTS `reviews`;
@@ -234,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `reviews`
+-- Dumping data for table `reviews`
 --
 
 INSERT INTO `reviews` (`id`, `user_id`, `restaurant_id`, `rating`, `comment`, `created_at`) VALUES
@@ -245,7 +247,7 @@ INSERT INTO `reviews` (`id`, `user_id`, `restaurant_id`, `rating`, `comment`, `c
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `users`
+-- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
@@ -263,20 +265,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `zip_code` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`(255))
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `phone`, `avatar_url`, `address_line`, `city`, `zip_code`) VALUES
 (1, 'Kori Zoltán', 'korizoltan1965@gmail.com', '$2a$12$B8l0hyERs92Larf2AYaDwe28jq.vpzoBt4QlsGr8jC6P72T1zOoGm', '2026-01-26', NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Patrik Admin', 'padmin@gmail.com', '$2a$12$rmexQsjZ84ZxCq05dLndHOJ6VTfeIaXznnRaQ5teZMokFj79lNYIW', '2026-01-26', NULL, NULL, NULL, NULL, NULL, NULL);
+(3, 'Patrik Admin', 'padmin@gmail.com', '$2a$12$rmexQsjZ84ZxCq05dLndHOJ6VTfeIaXznnRaQ5teZMokFj79lNYIW', '2026-01-26', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'Martin Papa', 'madmin@gmail.com', '$2a$12$SsuWLRHghFfd4IIOEaiUAOGdoNCe/J2sHEhGGndCl7Fh9e9B0Yq1.', '2026-01-26', '2026-01-26 15:38:01', NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRksQSQeMKU32MNydXZtXPew-vGqk53_WDlVw&s', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `user_addresses`
+-- Table structure for table `user_addresses`
 --
 
 DROP TABLE IF EXISTS `user_addresses`;
@@ -290,12 +293,19 @@ CREATE TABLE IF NOT EXISTS `user_addresses` (
   `is_default` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `idx_user_addresses_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_addresses`
+--
+
+INSERT INTO `user_addresses` (`id`, `user_id`, `label`, `address_line`, `city`, `zip_code`, `is_default`) VALUES
+(3, 4, 'Munkahely', 'Mars tér 13, Csillagbörtön', 'Szeged', '6724', 1);
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `user_payment_methods`
+-- Table structure for table `user_payment_methods`
 --
 
 DROP TABLE IF EXISTS `user_payment_methods`;
@@ -308,20 +318,27 @@ CREATE TABLE IF NOT EXISTS `user_payment_methods` (
   `is_default` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `idx_user_payment_methods_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Megkötések a kiírt táblákhoz
+-- Dumping data for table `user_payment_methods`
+--
+
+INSERT INTO `user_payment_methods` (`id`, `user_id`, `type`, `display_name`, `last_four_digits`, `is_default`) VALUES
+(2, 4, 'cash', 'KÁPÉ', NULL, 1);
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Megkötések a táblához `user_addresses`
+-- Constraints for table `user_addresses`
 --
 ALTER TABLE `user_addresses`
   ADD CONSTRAINT `fk_user_addresses_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Megkötések a táblához `user_payment_methods`
+-- Constraints for table `user_payment_methods`
 --
 ALTER TABLE `user_payment_methods`
   ADD CONSTRAINT `fk_user_payment_methods_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
