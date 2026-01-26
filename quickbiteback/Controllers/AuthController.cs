@@ -46,7 +46,7 @@ public class AuthController : ControllerBase
             return Unauthorized(new { message = "Hibás email vagy jelszó." });
 
         var token = CreateToken(user.id, user.email, user.name);
-        return Ok(new AuthResponseDto { Token = token, Name = user.name });
+        return Ok(new AuthResponseDto { UserId = user.id, Token = token, Name = user.name });
     }
 
     /// <summary>
@@ -83,7 +83,7 @@ public class AuthController : ControllerBase
         await _context.SaveChangesAsync();
 
         var token = CreateToken(user.id, user.email, user.name);
-        return Ok(new AuthResponseDto { Token = token, Name = user.name });
+        return Ok(new AuthResponseDto { UserId = user.id, Token = token, Name = user.name });
     }
 
     private string CreateToken(int userId, string email, string name)

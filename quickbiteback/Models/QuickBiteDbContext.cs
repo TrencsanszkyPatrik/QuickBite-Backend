@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +21,8 @@ namespace quickbiteback.Models
         public virtual DbSet<restaurants> restaurants { get; set; }
         public virtual DbSet<reviews> reviews { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<user_addresses> user_addresses { get; set; }
+        public virtual DbSet<user_payment_methods> user_payment_methods { get; set; }
         public virtual DbSet<menu_items> menu_items { get; set; }
 
         // === CONNECTION STRING ===
@@ -113,6 +115,26 @@ namespace quickbiteback.Models
 
                 entity.Property(e => e.created_at)
                       .HasDefaultValueSql("'current_timestamp()'");
+            });
+
+            // ---- user_addresses ----
+            modelBuilder.Entity<user_addresses>(entity =>
+            {
+                entity.HasKey(e => e.id).HasName("PRIMARY");
+                entity.HasOne(d => d.user)
+                    .WithMany(p => p.user_addresses)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("fk_user_addresses_user");
+            });
+
+            // ---- user_payment_methods ----
+            modelBuilder.Entity<user_payment_methods>(entity =>
+            {
+                entity.HasKey(e => e.id).HasName("PRIMARY");
+                entity.HasOne(d => d.user)
+                    .WithMany(p => p.user_payment_methods)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("fk_user_payment_methods_user");
             });
 
             // ---- menu_items ----

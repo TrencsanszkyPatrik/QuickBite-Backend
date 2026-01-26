@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("quickbiteback")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+168cb53b317d3d37df6abef654191253f2cdd7f1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47670556f6d2df179a2184b27cc074f0ccebc7bf")]
 [assembly: System.Reflection.AssemblyProductAttribute("quickbiteback")]
 [assembly: System.Reflection.AssemblyTitleAttribute("quickbiteback")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
