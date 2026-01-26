@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\berzi\\Source\\Repos\\QuickBite-Backendasdasd\\quickbiteback\\quickbiteback.csproj": {}
+    "C:\\Users\\Lempnerm\\Desktop\\Quickbite\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj": {}
   },
   "projects": {
-    "C:\\Users\\berzi\\Source\\Repos\\QuickBite-Backendasdasd\\quickbiteback\\quickbiteback.csproj": {
+    "C:\\Users\\Lempnerm\\Desktop\\Quickbite\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\berzi\\Source\\Repos\\QuickBite-Backendasdasd\\quickbiteback\\quickbiteback.csproj",
+        "projectUniqueName": "C:\\Users\\Lempnerm\\Desktop\\Quickbite\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj",
         "projectName": "quickbiteback",
-        "projectPath": "C:\\Users\\berzi\\Source\\Repos\\QuickBite-Backendasdasd\\quickbiteback\\quickbiteback.csproj",
-        "packagesPath": "C:\\Users\\berzi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\berzi\\Source\\Repos\\QuickBite-Backendasdasd\\quickbiteback\\obj\\",
+        "projectPath": "C:\\Users\\Lempnerm\\Desktop\\Quickbite\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj",
+        "packagesPath": "C:\\Users\\Lempnerm\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Lempnerm\\Desktop\\Quickbite\\QuickBite-Backend\\quickbiteback\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\berzi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lempnerm\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -45,12 +45,20 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.22, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.22, )"
@@ -103,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
