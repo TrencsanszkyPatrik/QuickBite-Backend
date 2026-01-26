@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 26. 08:32
+-- Létrehozás ideje: 2026. Jan 26. 10:59
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -148,13 +148,14 @@ INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`,
 
 DROP TABLE IF EXISTS `quickbite_reviews`;
 CREATE TABLE IF NOT EXISTS `quickbite_reviews` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL,
   `text` text NOT NULL,
   `stars` tinyint(4) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `quickbite_reviews`
@@ -171,7 +172,10 @@ INSERT INTO `quickbite_reviews` (`id`, `username`, `name`, `text`, `stars`, `cre
 (8, 'emese.nemeth', 'Németh Emese', 'Sajnos a leves hideg volt, de a főétel kiváló volt.', 3, '2025-12-03 17:40:00'),
 (9, 'daniel.sipos', 'Sipos Dániel', 'Mindig friss és ízletes. A kiszállítás is pontos.', 5, '2025-12-02 12:25:00'),
 (10, 'zsombi.karoly', 'Károly Zsombor', 'Jó választék és könnyen használható weboldal. Csak így tovább!', 4, '2025-12-01 15:30:00'),
-(11, 'novaklaci', 'Novák Laci', 'Ez a hely ien volt 3 csilagos', 5, '2025-12-11 08:45:18');
+(11, 'novaklaci', 'Novák Laci', 'Ez a hely ien volt 3 csilagos', 5, '2025-12-11 08:45:18'),
+(12, 'korizoltan1965', 'Kori Zoltán', 'Áttekinthető, könnyen kezelhető webshop, gyors rendelési folyamattal. A kínálat jól strukturált, az ételek leírása érthető, a fizetés pedig zökkenőmentes. Összességében kényelmes és felhasználóbarát megoldás ételrendeléshez.', 5, '2026-01-26 10:57:27'),
+(13, 'korizoltan1965', 'Kori Zoltán', 'A webshop modern megjelenésű és jól átlátható, a rendelés leadása gyors és egyszerű. Az ételek részletesen vannak bemutatva, a felület pedig gördülékenyen működik. Kellemes élmény az online rendelés.', 5, '2026-01-26 10:58:26'),
+(25, 'korizoltan1965', 'Kori Zoltán', 'A webshop modern megjelenésű és jól átlátható, a rendelés leadása gyors és egyszerű. Az ételek részletesen vannak bemutatva, a felület pedig gördülékenyen működik. Kellemes élmény az online rendelés.', 5, '2026-01-26 10:59:01');
 
 -- --------------------------------------------------------
 
