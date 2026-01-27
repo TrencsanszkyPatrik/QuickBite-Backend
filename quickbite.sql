@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 26, 2026 at 05:21 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2026. Jan 27. 12:41
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `quickbite`
+-- Adatbázis: `quickbite`
 --
 CREATE DATABASE IF NOT EXISTS `quickbite` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `quickbite`;
@@ -26,7 +26,7 @@ USE `quickbite`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Tábla szerkezet ehhez a táblához `categories`
 --
 
 DROP TABLE IF EXISTS `categories`;
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
--- Dumping data for table `categories`
+-- A tábla adatainak kiíratása `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`, `icon`) VALUES
@@ -50,7 +50,7 @@ INSERT INTO `categories` (`id`, `name`, `icon`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu_items`
+-- Tábla szerkezet ehhez a táblához `menu_items`
 --
 
 DROP TABLE IF EXISTS `menu_items`;
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
 ) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
--- Dumping data for table `menu_items`
+-- A tábla adatainak kiíratása `menu_items`
 --
 
 INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`, `image_url`, `category`, `is_available`, `created_at`) VALUES
@@ -144,7 +144,7 @@ INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quickbite_reviews`
+-- Tábla szerkezet ehhez a táblához `quickbite_reviews`
 --
 
 DROP TABLE IF EXISTS `quickbite_reviews`;
@@ -156,10 +156,10 @@ CREATE TABLE IF NOT EXISTS `quickbite_reviews` (
   `stars` tinyint(4) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
--- Dumping data for table `quickbite_reviews`
+-- A tábla adatainak kiíratása `quickbite_reviews`
 --
 
 INSERT INTO `quickbite_reviews` (`id`, `username`, `name`, `text`, `stars`, `created_at`) VALUES
@@ -178,17 +178,18 @@ INSERT INTO `quickbite_reviews` (`id`, `username`, `name`, `text`, `stars`, `cre
 (13, 'korizoltan1965', 'Kori Zoltán', 'A webshop modern megjelenésű és jól átlátható, a rendelés leadása gyors és egyszerű. Az ételek részletesen vannak bemutatva, a felület pedig gördülékenyen működik. Kellemes élmény az online rendelés.', 5, '2026-01-26 10:58:26'),
 (25, 'korizoltan1965', 'Kori Zoltán', 'A webshop modern megjelenésű és jól átlátható, a rendelés leadása gyors és egyszerű. Az ételek részletesen vannak bemutatva, a felület pedig gördülékenyen működik. Kellemes élmény az online rendelés.', 5, '2026-01-26 10:59:01'),
 (26, 'padmin', 'Patrik Admin', 'Nagyon szuper weboldal!', 5, '2026-01-26 13:46:58'),
-(27, 'korizoltan1965', 'Kori Zoltán', 'Nagyon elégedett voltam mindennel!', 5, '2026-01-26 16:25:51');
+(27, 'korizoltan1965', 'Kori Zoltán', 'Nagyon elégedett voltam mindennel!', 5, '2026-01-26 16:25:51'),
+(28, 'madmin', 'Martin Papa', 'Ez az oldal maga a jövő! Tökéletes, precíz weboldal nagyon hasznos funkcióval!', 5, '2026-01-27 10:30:13');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `restaurants`
+-- Tábla szerkezet ehhez a táblához `restaurants`
 --
 
 DROP TABLE IF EXISTS `restaurants`;
 CREATE TABLE IF NOT EXISTS `restaurants` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   `address` text NOT NULL,
   `city` text NOT NULL,
@@ -202,27 +203,31 @@ CREATE TABLE IF NOT EXISTS `restaurants` (
   `cuisine_id` int(11) NOT NULL,
   `latitude` decimal(10,0) NOT NULL,
   `longitude` decimal(10,0) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
--- Dumping data for table `restaurants`
+-- A tábla adatainak kiíratása `restaurants`
 --
 
 INSERT INTO `restaurants` (`id`, `name`, `address`, `city`, `description`, `description_long`, `phonenumber`, `image_url`, `discount`, `free_delivery`, `accept_cards`, `cuisine_id`, `latitude`, `longitude`, `created_at`) VALUES
-(1, 'Anyukám Mondta', 'Petőfi Sándor út 57.', 'Encs', 'Kedvelt olasz étterem Miskolc közelében.', 'Autentikus olasz tészták, pizzák és desszertek, családias hangulatban.', '+36301284567', '/img/etteremkepek/anyukam.jpg', 20, 0, 1, 1, 48, 21, '2025-12-04 07:51:21'),
+(1, 'Anyukám Mondta', 'Petőfi Sándor út 57.', 'Encs', 'Kedvelt olasz étterem Miskolc közelében.', 'Autentikus olasz tészták, pizzák és desszertek, családias hangulatban.', '+36301284567', '/img/etteremkepek/anyukam-mondta.jpg', 20, 0, 1, 1, 48, 21, '2025-12-04 07:51:21'),
 (2, 'Végállomás Bistorant', 'Dorottya u. 1.', 'Miskolc', 'Modern magyar konyha, helyi alapanyagokkal.', 'Fine dining élmény, újragondolt magyar fogásokkal és kiváló borlappal.', '+36209837451', '/img/etteremkepek/vegallomas.jpg', 10, 1, 1, 2, 48, 21, '2025-12-04 07:51:21'),
 (3, 'Zip\'s Brewhouse', 'Arany János tér 1.', 'Miskolc', 'Kézműves sörök és gasztro pub.', 'Saját főzésű sörök, pub klasszikusok és street food modern tálalásban.', '+36704561298', '/img/etteremkepek/zip.jpg', 0, 1, 1, 3, 48, 21, '2025-12-04 07:51:21'),
 (4, 'Calypso Kisvendéglő', 'Görgey Artúr u. 23.', 'Miskolc', 'Hagyományos magyar ételek barátságos környezetben.', 'Családias vendéglő, házias ízek, nagy adagok, kedvező árak.', '+36307849126', '/img/etteremkepek/calypso.jpg', 0, 1, 1, 2, 48, 21, '2025-12-04 07:51:21'),
 (17, 'Pesti Disznó', 'Kossuth Lajos utca 12.', 'Budapest', 'Hagyományos magyar bisztró modern köntösben', 'A Pesti Disznó a magyar konyha újragondolt változata: mangalica, libamáj, kacsacomb, házi kolbászok és kézműves sörök. Hangulatos belvárosi hely tökéletes ebédre vagy vacsorára.', '+36201263984', '/img/etteremkepek/pesti-diszno.jpg', 15, 1, 1, 1, 47, 19, '2025-12-11 09:05:15'),
 (18, 'Trófea Grill Étterem', 'Király utca 30-32.', 'Budapest', 'Korlátlan étel- és italfogyasztás', 'Magyarország egyik legnépszerűbb „all you can eat\" étterme prémium húsokkal, friss salátabárral, desszertekkel és korlátlan házi limonádéval, sörrel, borral.', '+36708945132', '/img/etteremkepek/trofea.jpg', 0, 0, 1, 2, 47, 19, '2025-12-11 09:05:15'),
 (19, 'Sushi Sei', 'Andrássy út 85.', 'Budapest', 'Prémium japán étterem', 'Hagyományos és modern japán fogások, friss sashimi, nigiri készítés élőben a vendégek előtt. Az ország egyik legjobb értékelésű sushi helye.', '+36301492875', '/img/etteremkepek/sushu-sei.jpg', 10, 1, 1, 4, 48, 19, '2025-12-11 09:05:15'),
-(20, 'Tacos Miguel', 'Kazinczy utca 7.', 'Budapest', 'Hangulatos mexikói bisztró a Gozsdu udvarban', 'Friss, eredeti mexikói alapanyagokból készült fogások: házilag darált kukoricalisztből készült tortilla, marha barbacoa, cochinita pibil, al pastor, ceviche és pico de gallo. Kiváló napi taco- és burrito-menü, házi készítésű horchata, jamaica, margarita és több mint 30-féle tequila és mezcal. Reggel chilaquiles-szel indul, este pedig late-night tacóval zár – egész nap tökéletes választás.', '+36207851649', '/img/etteremkepek/tacos.jpg', 5, 0, 1, 5, 47, 19, '2025-12-11 09:05:15');
+(20, 'Tacos Miguel', 'Kazinczy utca 7.', 'Budapest', 'Hangulatos mexikói bisztró a Gozsdu udvarban', 'Friss, eredeti mexikói alapanyagokból készült fogások: házilag darált kukoricalisztből készült tortilla, marha barbacoa, cochinita pibil, al pastor, ceviche és pico de gallo. Kiváló napi taco- és burrito-menü, házi készítésű horchata, jamaica, margarita és több mint 30-féle tequila és mezcal. Reggel chilaquiles-szel indul, este pedig late-night tacóval zár – egész nap tökéletes választás.', '+36207851649', '/img/etteremkepek/tacos.jpg', 5, 0, 1, 5, 47, 19, '2025-12-11 09:05:15'),
+(21, 'Tűzhely Kávézó & Bisztro', 'Városház tér 3.', 'Miskolc', 'Reggeli-brunch specialitások, házi lepények, könnyű ebéd fogások délután.', 'A Tűzhely Kávézó & Bisztro nem csupán egy hely, ahol reggelit vagy ebédet fogyasztasz – igazi kis oázis a város szívében, ahol a nap bármely szakában otthonosan érzed magad, mintha csak egy jó barát konyhájába léptél volna be.', '+36709876543', '/img/etteremkepek/tuzhely-kavezo-bisztro.jpg', 25, 0, 0, 3, 120, 11, '2026-01-27 10:57:14'),
+(30, 'Hajnali Wok & Bao', 'Liszt Ferenc utca 23.', 'Győr', 'Ázsiai fúziós étterem választékos bao, okonomiyaki, matcha ételekkel.', 'Hajnali Wok & Bao egy modern, ázsiai ihletésű bisztró a belvárosban, ahol a reggeli és brunch találkozik a keleti ízekkel – friss, könnyed, de nagyon ízletes formában. Itt a \"lepény\" ázsiai stílusban érkezik: puha, gőzölt bao bun különféle töltelékekkel (lassú sült kacsahús hoisin mártással, grillezett sertés has bacon-szerűen ropogósra sütve, tofu shiitake gombával vegán verzióban), vagy japán stílusú okonomiyaki (káposztás, tenger gyümölcseivel vagy baconnal, házi okonomiyaki szósszal és bonito pehellyel).', '+36309876543', '/img/etteremkepek/hajnali-wok-bao.jpg', 10, 0, 1, 4, 47, 19, '2026-01-27 11:09:31'),
+(31, 'Sabores Perdidos', 'Domb utca 73.', 'Debrecen', 'Autentikus mexikói ízek - taco, enchilada, guacamole, margarita.', 'A Sabores Perdidos egy igazi mexikói hangulatú hely, ahol a fókusz a klasszikus, fűszeres fogásokon van, csakis ízig-vérig mexikói konyha délben és este is.', '+36304567890', '/img/etteremkepek/sabores-perdidos.jpg', 12, 1, 1, 5, 47, 19, '2026-01-27 11:18:45');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reviews`
+-- Tábla szerkezet ehhez a táblához `reviews`
 --
 
 DROP TABLE IF EXISTS `reviews`;
@@ -236,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
--- Dumping data for table `reviews`
+-- A tábla adatainak kiíratása `reviews`
 --
 
 INSERT INTO `reviews` (`id`, `user_id`, `restaurant_id`, `rating`, `comment`, `created_at`) VALUES
@@ -247,7 +252,7 @@ INSERT INTO `reviews` (`id`, `user_id`, `restaurant_id`, `rating`, `comment`, `c
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Tábla szerkezet ehhez a táblához `users`
 --
 
 DROP TABLE IF EXISTS `users`;
@@ -268,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
--- Dumping data for table `users`
+-- A tábla adatainak kiíratása `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `phone`, `avatar_url`, `address_line`, `city`, `zip_code`) VALUES
@@ -279,7 +284,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_addresses`
+-- Tábla szerkezet ehhez a táblához `user_addresses`
 --
 
 DROP TABLE IF EXISTS `user_addresses`;
@@ -296,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `user_addresses` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user_addresses`
+-- A tábla adatainak kiíratása `user_addresses`
 --
 
 INSERT INTO `user_addresses` (`id`, `user_id`, `label`, `address_line`, `city`, `zip_code`, `is_default`) VALUES
@@ -305,7 +310,7 @@ INSERT INTO `user_addresses` (`id`, `user_id`, `label`, `address_line`, `city`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_payment_methods`
+-- Tábla szerkezet ehhez a táblához `user_payment_methods`
 --
 
 DROP TABLE IF EXISTS `user_payment_methods`;
@@ -321,24 +326,24 @@ CREATE TABLE IF NOT EXISTS `user_payment_methods` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user_payment_methods`
+-- A tábla adatainak kiíratása `user_payment_methods`
 --
 
 INSERT INTO `user_payment_methods` (`id`, `user_id`, `type`, `display_name`, `last_four_digits`, `is_default`) VALUES
 (2, 4, 'cash', 'KÁPÉ', NULL, 1);
 
 --
--- Constraints for dumped tables
+-- Megkötések a kiírt táblákhoz
 --
 
 --
--- Constraints for table `user_addresses`
+-- Megkötések a táblához `user_addresses`
 --
 ALTER TABLE `user_addresses`
   ADD CONSTRAINT `fk_user_addresses_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `user_payment_methods`
+-- Megkötések a táblához `user_payment_methods`
 --
 ALTER TABLE `user_payment_methods`
   ADD CONSTRAINT `fk_user_payment_methods_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
