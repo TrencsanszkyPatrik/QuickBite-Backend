@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 28. 07:48
--- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.2.12
+-- Létrehozás ideje: 2026. Feb 02. 11:22
+-- Kiszolgáló verziója: 10.4.28-MariaDB
+-- PHP verzió: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,11 +30,12 @@ USE `quickbite`;
 --
 
 DROP TABLE IF EXISTS `categories`;
-CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
-  `icon` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+  `icon` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `categories`
@@ -54,8 +55,8 @@ INSERT INTO `categories` (`id`, `name`, `icon`) VALUES
 --
 
 DROP TABLE IF EXISTS `menu_items`;
-CREATE TABLE `menu_items` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `menu_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `restaurant_id` int(11) NOT NULL,
   `name` text NOT NULL,
   `description` text DEFAULT NULL,
@@ -63,8 +64,10 @@ CREATE TABLE `menu_items` (
   `image_url` text DEFAULT NULL,
   `category` text DEFAULT NULL,
   `is_available` tinyint(1) NOT NULL DEFAULT 1,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_menu_items_restaurant_id` (`restaurant_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `menu_items`
@@ -230,7 +233,39 @@ INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`,
 (158, 21, 'Craft sörök', '3–4 féle könnyű craft sör brunchhoz', 3600, '/img/EtelKepek/CraftSör.png', 'Ital', 1, '2026-01-27 18:13:40'),
 (159, 21, 'Aperol spritz', 'Aperol, prosecco és szóda lime-mal', 3300, '/img/EtelKepek/AperolSpritz.png', 'Ital', 1, '2026-01-27 18:13:40'),
 (160, 21, 'Matcha latte vagy chai latte', 'Tejes specialty ital matchából vagy chai fűszerkeverékből', 2400, '/img/EtelKepek/MatchaLatte.png', 'Ital', 1, '2026-01-27 18:13:40'),
-(161, 21, 'Citromos túró desszert', 'Joghurtos desszert citromos túróval, friss bogyókkal és granolával', 2700, '/img/EtelKepek/LemonCurdBerry.png', 'Desszert', 1, '2026-01-27 18:13:33');
+(161, 21, 'Citromos túró desszert', 'Joghurtos desszert citromos túróval, friss bogyókkal és granolával', 2700, '/img/EtelKepek/LemonCurdBerry.png', 'Desszert', 1, '2026-01-27 18:13:33'),
+(162, 32, 'Burrata al Tartufo', 'Krémes burrata friss szarvasgombával és extra szűz olívaolajjal', 3490, NULL, 'Előétel', 1, '2026-02-02 11:19:16'),
+(163, 32, 'Vitello Tonnato', 'Vékonyra szeletelt borjúhús tonhalas-kapris krémmel', 3690, NULL, 'Előétel', 1, '2026-02-02 11:19:16'),
+(164, 32, 'Caponata Siciliana', 'Szicíliai édes-savanyú padlizsánragu zöldségekkel', 2990, NULL, 'Előétel', 1, '2026-02-02 11:19:16'),
+(165, 32, 'Frittelle di Baccalà', 'Ropogós tőkehalfalatok citromos aiolival', 3290, NULL, 'Előétel', 1, '2026-02-02 11:19:16'),
+(166, 32, 'Insalata di Polpo', 'Citromos-olívaolajos polipsaláta friss petrezselyemmel', 3890, NULL, 'Előétel', 1, '2026-02-02 11:19:16'),
+(167, 32, 'Arancini al Ragù', 'Sicíliai töltött rizsgolyók húsos paradicsommártással', 3190, NULL, 'Előétel', 1, '2026-02-02 11:19:16'),
+(168, 32, 'Pappardelle al Cinghiale', 'Széles metélt házi vadmalacraguval', 5490, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
+(169, 32, 'Risotto al Nero di Seppia', 'Tintahalas rizottó tintahal tintájával', 5290, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
+(170, 32, 'Orecchiette con Cime di Rapa', 'Pugliai tészta brokkolirabe-val és szardellával', 4690, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
+(171, 32, 'Gnocchi alla Sorrentina', 'Paradicsomszósz, mozzarella és friss bazsalikom', 4790, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
+(172, 32, 'Spaghetti alla Bottarga', 'Szardíniai tészta szárított ikrával és citromhéjjal', 5190, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
+(173, 32, 'Lasagna Bianca ai Funghi', 'Fehér lasagne erdei gombákkal és besamellel', 5090, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
+(174, 32, 'Saltimbocca alla Romana', 'Borjúkaraj prosciuttóval és zsályával', 5790, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
+(175, 32, 'Pollo alla Cacciatora', 'Vadász módra készült csirke boros-paradicsomos mártásban', 5190, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
+(176, 32, 'Ossobuco alla Milanese', 'Hosszan párolt borjúlábszár gremolatával', 6990, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
+(177, 32, 'Branzino al Forno', 'Egészben sült tengeri sügér citrommal', 6490, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
+(178, 32, 'Margherita DOP', 'San Marzano paradicsom, bivalymozzarella, bazsalikom', 3790, NULL, 'Pizza', 1, '2026-02-02 11:19:16'),
+(179, 32, 'Diavola', 'Csípős szalámi, paradicsomszósz és mozzarella', 4290, NULL, 'Pizza', 1, '2026-02-02 11:19:16'),
+(180, 32, 'Pizza Gorgonzola e Pere', 'Gorgonzola, körte és dió fehér alapon', 4990, NULL, 'Pizza', 1, '2026-02-02 11:19:16'),
+(181, 32, 'Salsiccia e Friarielli', 'Olasz kolbász és brokkolirabe nápolyi stílusban', 5190, NULL, 'Pizza', 1, '2026-02-02 11:19:16'),
+(182, 32, 'Tiramisu Classico', 'Mascarponés krém kávéval és kakaóval', 2890, NULL, 'Desszert', 1, '2026-02-02 11:19:16'),
+(183, 32, 'Torta Caprese', 'Lisztmentes csokoládés-mandulás torta', 2690, NULL, 'Desszert', 1, '2026-02-02 11:19:16'),
+(184, 32, 'Cannoli Siciliani', 'Ropogós cső ricottakrémmel és pisztáciával', 2990, NULL, 'Desszert', 1, '2026-02-02 11:19:16'),
+(185, 32, 'Panna Cotta al Pistacchio', 'Pisztáciás panna cotta', 2790, NULL, 'Desszert', 1, '2026-02-02 11:19:16'),
+(186, 32, 'Affogato al Caffè', 'Vaníliafagylalt forró eszpresszóval', 2490, NULL, 'Desszert', 1, '2026-02-02 11:19:16'),
+(187, 32, 'Espresso Italiano', 'Olasz eszpresszó', 690, NULL, 'Ital', 1, '2026-02-02 11:19:16'),
+(188, 32, 'Cappuccino', 'Eszpresszó gőzölt tejhabbal', 890, NULL, 'Ital', 1, '2026-02-02 11:19:16'),
+(189, 32, 'Aperol Spritz', 'Aperol, prosecco és szóda', 1990, NULL, 'Ital', 1, '2026-02-02 11:19:16'),
+(190, 32, 'Campari Soda', 'Campari szódával', 1790, NULL, 'Ital', 1, '2026-02-02 11:19:16'),
+(191, 32, 'Limoncello', 'Hagyományos olasz citromlikőr', 1390, NULL, 'Ital', 1, '2026-02-02 11:19:16'),
+(192, 32, 'Montepulciano d’Abruzzo', 'Gyümölcsös olasz vörösbor (1 dl)', 1190, NULL, 'Bor', 1, '2026-02-02 11:19:16'),
+(193, 32, 'Vermentino di Sardegna', 'Ásványos, citrusos olasz fehérbor (1 dl)', 1290, NULL, 'Bor', 1, '2026-02-02 11:19:16');
 
 -- --------------------------------------------------------
 
@@ -239,14 +274,15 @@ INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`,
 --
 
 DROP TABLE IF EXISTS `quickbite_reviews`;
-CREATE TABLE `quickbite_reviews` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `quickbite_reviews` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL,
   `text` text NOT NULL,
   `stars` tinyint(4) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `quickbite_reviews`
@@ -278,8 +314,8 @@ INSERT INTO `quickbite_reviews` (`id`, `username`, `name`, `text`, `stars`, `cre
 --
 
 DROP TABLE IF EXISTS `restaurants`;
-CREATE TABLE `restaurants` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `restaurants` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   `address` text NOT NULL,
   `city` text NOT NULL,
@@ -293,8 +329,10 @@ CREATE TABLE `restaurants` (
   `cuisine_id` int(11) NOT NULL,
   `latitude` decimal(10,0) NOT NULL,
   `longitude` decimal(10,0) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_restaurants_cuisine_id` (`cuisine_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `restaurants`
@@ -321,14 +359,17 @@ INSERT INTO `restaurants` (`id`, `name`, `address`, `city`, `description`, `desc
 --
 
 DROP TABLE IF EXISTS `reviews`;
-CREATE TABLE `reviews` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `reviews` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
   `rating` tinyint(4) NOT NULL,
   `comment` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_reviews_user_id` (`user_id`),
+  KEY `idx_reviews_restaurant_id` (`restaurant_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `reviews`
@@ -346,8 +387,8 @@ INSERT INTO `reviews` (`id`, `user_id`, `restaurant_id`, `rating`, `comment`, `c
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
@@ -357,8 +398,10 @@ CREATE TABLE `users` (
   `avatar_url` text DEFAULT NULL,
   `address_line` text DEFAULT NULL,
   `city` varchar(100) DEFAULT NULL,
-  `zip_code` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+  `zip_code` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`(255))
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `users`
@@ -376,15 +419,17 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_a
 --
 
 DROP TABLE IF EXISTS `user_addresses`;
-CREATE TABLE `user_addresses` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `user_addresses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `label` varchar(50) NOT NULL,
   `address_line` text NOT NULL,
   `city` varchar(100) NOT NULL,
   `zip_code` varchar(10) NOT NULL,
-  `is_default` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `is_default` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `idx_user_addresses_user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `user_addresses`
@@ -400,14 +445,16 @@ INSERT INTO `user_addresses` (`id`, `user_id`, `label`, `address_line`, `city`, 
 --
 
 DROP TABLE IF EXISTS `user_payment_methods`;
-CREATE TABLE `user_payment_methods` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `user_payment_methods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `type` varchar(20) NOT NULL,
   `display_name` varchar(100) NOT NULL,
   `last_four_digits` varchar(4) DEFAULT NULL,
-  `is_default` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `is_default` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `idx_user_payment_methods_user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `user_payment_methods`
@@ -415,117 +462,6 @@ CREATE TABLE `user_payment_methods` (
 
 INSERT INTO `user_payment_methods` (`id`, `user_id`, `type`, `display_name`, `last_four_digits`, `is_default`) VALUES
 (2, 4, 'cash', 'KÁPÉ', NULL, 1);
-
---
--- Indexek a kiírt táblákhoz
---
-
---
--- A tábla indexei `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- A tábla indexei `menu_items`
---
-ALTER TABLE `menu_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idx_menu_items_restaurant_id` (`restaurant_id`);
-
---
--- A tábla indexei `quickbite_reviews`
---
-ALTER TABLE `quickbite_reviews`
-  ADD PRIMARY KEY (`id`);
-
---
--- A tábla indexei `restaurants`
---
-ALTER TABLE `restaurants`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idx_restaurants_cuisine_id` (`cuisine_id`);
-
---
--- A tábla indexei `reviews`
---
-ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idx_reviews_user_id` (`user_id`),
-  ADD KEY `idx_reviews_restaurant_id` (`restaurant_id`);
-
---
--- A tábla indexei `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`(255));
-
---
--- A tábla indexei `user_addresses`
---
-ALTER TABLE `user_addresses`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idx_user_addresses_user_id` (`user_id`);
-
---
--- A tábla indexei `user_payment_methods`
---
-ALTER TABLE `user_payment_methods`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idx_user_payment_methods_user_id` (`user_id`);
-
---
--- A kiírt táblák AUTO_INCREMENT értéke
---
-
---
--- AUTO_INCREMENT a táblához `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT a táblához `menu_items`
---
-ALTER TABLE `menu_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
-
---
--- AUTO_INCREMENT a táblához `quickbite_reviews`
---
-ALTER TABLE `quickbite_reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT a táblához `restaurants`
---
-ALTER TABLE `restaurants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT a táblához `reviews`
---
-ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT a táblához `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT a táblához `user_addresses`
---
-ALTER TABLE `user_addresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT a táblához `user_payment_methods`
---
-ALTER TABLE `user_payment_methods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Megkötések a kiírt táblákhoz
