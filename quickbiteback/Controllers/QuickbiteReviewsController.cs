@@ -38,5 +38,57 @@ namespace quickbiteback.Controllers
 
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateReview(int id, UpdateReviewDto reviewDto)
+        {
+            var review = await _context.quickbitereviews.FindAsync(id);
+            
+            if (review == null)
+            {
+                return NotFound();
+            }
+
+            review.Text = reviewDto.Review;
+            review.Stars = (sbyte)reviewDto.Stars;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ReviewExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteReview(int id)
+        {
+            var review = await _context.quickbitereviews.FindAsync(id);
+            if (review == null)
+            {
+                return NotFound();
+            }
+
+            _context.quickbitereviews.Remove(review);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool ReviewExists(int id)
+        {
+            return _context.quickbitereviews.Any(e => e.Id == id);
+        }
+
     }
 }

@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "6XotGQND1Tir/e6xgtVq/inJOIbNrZwz7hInr4FTdv8=",
+  "Hash": "YtVzZjRfGkqYR8LqUaO6UX/TrrHgFNXX95lz2VBwfks=",
   "Source": "quickbiteback",
   "BasePath": "_content/quickbiteback",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }
