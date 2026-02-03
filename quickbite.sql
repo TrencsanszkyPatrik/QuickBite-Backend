@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 02. 11:22
--- Kiszolgáló verziója: 10.4.28-MariaDB
--- PHP verzió: 8.2.4
+-- Létrehozás ideje: 2026. Feb 03. 09:40
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,6 +47,62 @@ INSERT INTO `categories` (`id`, `name`, `icon`) VALUES
 (3, 'Pub', '🍺'),
 (4, 'Ázsiai', '🍜'),
 (5, 'Mexikói', '🌮');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `coupons`
+--
+
+DROP TABLE IF EXISTS `coupons`;
+CREATE TABLE IF NOT EXISTS `coupons` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) NOT NULL,
+  `description` text DEFAULT NULL,
+  `discount_type` enum('percentage','fixed_amount') NOT NULL,
+  `discount_value` decimal(10,2) NOT NULL,
+  `min_order_amount` decimal(10,2) DEFAULT NULL,
+  `max_discount_amount` decimal(10,2) DEFAULT NULL,
+  `usage_limit` int(11) DEFAULT NULL,
+  `usage_count` int(11) DEFAULT 0,
+  `per_user_limit` int(11) DEFAULT 1,
+  `valid_from` datetime NOT NULL,
+  `valid_until` datetime NOT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
+  `restaurant_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code` (`code`),
+  KEY `restaurant_id` (`restaurant_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `coupons`
+--
+
+INSERT INTO `coupons` (`id`, `code`, `description`, `discount_type`, `discount_value`, `min_order_amount`, `max_discount_amount`, `usage_limit`, `usage_count`, `per_user_limit`, `valid_from`, `valid_until`, `is_active`, `restaurant_id`, `created_at`) VALUES
+(1, 'WELCOME20', 'Első rendeléshez 20% kedvezmény', 'percentage', 20.00, 3000.00, 2000.00, NULL, 0, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 09:39:29'),
+(2, 'FREESHIP', 'Ingyenes szállítás 5000 Ft felett', 'fixed_amount', 500.00, 5000.00, NULL, NULL, 0, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 09:39:29'),
+(3, 'SUMMER1000', '1000 Ft kedvezmény', 'fixed_amount', 1000.00, 4000.00, NULL, 100, 0, 1, '2026-06-01 00:00:00', '2026-08-31 00:00:00', 1, NULL, '2026-02-03 09:39:29');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `coupon_usages`
+--
+
+DROP TABLE IF EXISTS `coupon_usages`;
+CREATE TABLE IF NOT EXISTS `coupon_usages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `coupon_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `discount_amount` decimal(10,2) NOT NULL,
+  `used_at` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `coupon_id` (`coupon_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 -- --------------------------------------------------------
 
@@ -409,7 +465,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `phone`, `avatar_url`, `address_line`, `city`, `zip_code`) VALUES
 (1, 'Kori Zoltán', 'korizoltan1965@gmail.com', '$2a$12$B8l0hyERs92Larf2AYaDwe28jq.vpzoBt4QlsGr8jC6P72T1zOoGm', '2026-01-26', NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Patrik Admin', 'padmin@gmail.com', '$2a$12$rmexQsjZ84ZxCq05dLndHOJ6VTfeIaXznnRaQ5teZMokFj79lNYIW', '2026-01-26', NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'Patrik', 'padmin@gmail.com', '$2a$12$rmexQsjZ84ZxCq05dLndHOJ6VTfeIaXznnRaQ5teZMokFj79lNYIW', '2026-01-26', '2026-02-03 08:35:18', NULL, 'https://wiki.trashforum.org/images/thumb/b/b2/2929.jpg/300px-2929.jpg', NULL, NULL, NULL),
 (4, 'Martin Papa', 'madmin@gmail.com', '$2a$12$SsuWLRHghFfd4IIOEaiUAOGdoNCe/J2sHEhGGndCl7Fh9e9B0Yq1.', '2026-01-26', '2026-01-26 15:38:01', NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRksQSQeMKU32MNydXZtXPew-vGqk53_WDlVw&s', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -466,6 +522,19 @@ INSERT INTO `user_payment_methods` (`id`, `user_id`, `type`, `display_name`, `la
 --
 -- Megkötések a kiírt táblákhoz
 --
+
+--
+-- Megkötések a táblához `coupons`
+--
+ALTER TABLE `coupons`
+  ADD CONSTRAINT `coupons_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`);
+
+--
+-- Megkötések a táblához `coupon_usages`
+--
+ALTER TABLE `coupon_usages`
+  ADD CONSTRAINT `coupon_usages_ibfk_1` FOREIGN KEY (`coupon_id`) REFERENCES `coupons` (`id`),
+  ADD CONSTRAINT `coupon_usages_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Megkötések a táblához `menu_items`

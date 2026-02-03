@@ -2165,3 +2165,5 @@ C:\Users\trencsanszkyp\Desktop\quickbite\QuickBite-Backend\quickbiteback\obj\Deb
 C:\Users\trencsanszkyp\Desktop\quickbite\QuickBite-Backend\quickbiteback\obj\Debug\net8.0\quickbiteback.pdb
 C:\Users\trencsanszkyp\Desktop\quickbite\QuickBite-Backend\quickbiteback\obj\Debug\net8.0\quickbiteback.genruntimeconfig.cache
 C:\Users\trencsanszkyp\Desktop\quickbite\QuickBite-Backend\quickbiteback\obj\Debug\net8.0\ref\quickbiteback.dll
+C:\QUICKBITE\backend\QuickBite-Backend\quickbiteback\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\QUICKBITE\backend\QuickBite-Backend\quickbiteback\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
