@@ -24,6 +24,8 @@ namespace quickbiteback.Models
         public virtual DbSet<user_addresses> user_addresses { get; set; }
         public virtual DbSet<user_payment_methods> user_payment_methods { get; set; }
         public virtual DbSet<menu_items> menu_items { get; set; }
+        public virtual DbSet<Coupons> Coupons { get; set; }
+        public virtual DbSet<CouponUsages> CouponUsages { get; set; }
 
         // === CONNECTION STRING ===
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
