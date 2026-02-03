@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 03. 09:40
+-- Létrehozás ideje: 2026. Feb 03. 10:54
 -- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.0.30
+-- PHP verzió: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -290,38 +290,38 @@ INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`,
 (159, 21, 'Aperol spritz', 'Aperol, prosecco és szóda lime-mal', 3300, '/img/EtelKepek/AperolSpritz.png', 'Ital', 1, '2026-01-27 18:13:40'),
 (160, 21, 'Matcha latte vagy chai latte', 'Tejes specialty ital matchából vagy chai fűszerkeverékből', 2400, '/img/EtelKepek/MatchaLatte.png', 'Ital', 1, '2026-01-27 18:13:40'),
 (161, 21, 'Citromos túró desszert', 'Joghurtos desszert citromos túróval, friss bogyókkal és granolával', 2700, '/img/EtelKepek/LemonCurdBerry.png', 'Desszert', 1, '2026-01-27 18:13:33'),
-(162, 32, 'Burrata al Tartufo', 'Krémes burrata friss szarvasgombával és extra szűz olívaolajjal', 3490, NULL, 'Előétel', 1, '2026-02-02 11:19:16'),
-(163, 32, 'Vitello Tonnato', 'Vékonyra szeletelt borjúhús tonhalas-kapris krémmel', 3690, NULL, 'Előétel', 1, '2026-02-02 11:19:16'),
-(164, 32, 'Caponata Siciliana', 'Szicíliai édes-savanyú padlizsánragu zöldségekkel', 2990, NULL, 'Előétel', 1, '2026-02-02 11:19:16'),
-(165, 32, 'Frittelle di Baccalà', 'Ropogós tőkehalfalatok citromos aiolival', 3290, NULL, 'Előétel', 1, '2026-02-02 11:19:16'),
-(166, 32, 'Insalata di Polpo', 'Citromos-olívaolajos polipsaláta friss petrezselyemmel', 3890, NULL, 'Előétel', 1, '2026-02-02 11:19:16'),
-(167, 32, 'Arancini al Ragù', 'Sicíliai töltött rizsgolyók húsos paradicsommártással', 3190, NULL, 'Előétel', 1, '2026-02-02 11:19:16'),
-(168, 32, 'Pappardelle al Cinghiale', 'Széles metélt házi vadmalacraguval', 5490, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
-(169, 32, 'Risotto al Nero di Seppia', 'Tintahalas rizottó tintahal tintájával', 5290, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
-(170, 32, 'Orecchiette con Cime di Rapa', 'Pugliai tészta brokkolirabe-val és szardellával', 4690, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
-(171, 32, 'Gnocchi alla Sorrentina', 'Paradicsomszósz, mozzarella és friss bazsalikom', 4790, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
-(172, 32, 'Spaghetti alla Bottarga', 'Szardíniai tészta szárított ikrával és citromhéjjal', 5190, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
-(173, 32, 'Lasagna Bianca ai Funghi', 'Fehér lasagne erdei gombákkal és besamellel', 5090, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
-(174, 32, 'Saltimbocca alla Romana', 'Borjúkaraj prosciuttóval és zsályával', 5790, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
-(175, 32, 'Pollo alla Cacciatora', 'Vadász módra készült csirke boros-paradicsomos mártásban', 5190, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
-(176, 32, 'Ossobuco alla Milanese', 'Hosszan párolt borjúlábszár gremolatával', 6990, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
-(177, 32, 'Branzino al Forno', 'Egészben sült tengeri sügér citrommal', 6490, NULL, 'Főétel', 1, '2026-02-02 11:19:16'),
-(178, 32, 'Margherita DOP', 'San Marzano paradicsom, bivalymozzarella, bazsalikom', 3790, NULL, 'Pizza', 1, '2026-02-02 11:19:16'),
-(179, 32, 'Diavola', 'Csípős szalámi, paradicsomszósz és mozzarella', 4290, NULL, 'Pizza', 1, '2026-02-02 11:19:16'),
-(180, 32, 'Pizza Gorgonzola e Pere', 'Gorgonzola, körte és dió fehér alapon', 4990, NULL, 'Pizza', 1, '2026-02-02 11:19:16'),
-(181, 32, 'Salsiccia e Friarielli', 'Olasz kolbász és brokkolirabe nápolyi stílusban', 5190, NULL, 'Pizza', 1, '2026-02-02 11:19:16'),
-(182, 32, 'Tiramisu Classico', 'Mascarponés krém kávéval és kakaóval', 2890, NULL, 'Desszert', 1, '2026-02-02 11:19:16'),
-(183, 32, 'Torta Caprese', 'Lisztmentes csokoládés-mandulás torta', 2690, NULL, 'Desszert', 1, '2026-02-02 11:19:16'),
-(184, 32, 'Cannoli Siciliani', 'Ropogós cső ricottakrémmel és pisztáciával', 2990, NULL, 'Desszert', 1, '2026-02-02 11:19:16'),
-(185, 32, 'Panna Cotta al Pistacchio', 'Pisztáciás panna cotta', 2790, NULL, 'Desszert', 1, '2026-02-02 11:19:16'),
-(186, 32, 'Affogato al Caffè', 'Vaníliafagylalt forró eszpresszóval', 2490, NULL, 'Desszert', 1, '2026-02-02 11:19:16'),
-(187, 32, 'Espresso Italiano', 'Olasz eszpresszó', 690, NULL, 'Ital', 1, '2026-02-02 11:19:16'),
-(188, 32, 'Cappuccino', 'Eszpresszó gőzölt tejhabbal', 890, NULL, 'Ital', 1, '2026-02-02 11:19:16'),
-(189, 32, 'Aperol Spritz', 'Aperol, prosecco és szóda', 1990, NULL, 'Ital', 1, '2026-02-02 11:19:16'),
-(190, 32, 'Campari Soda', 'Campari szódával', 1790, NULL, 'Ital', 1, '2026-02-02 11:19:16'),
-(191, 32, 'Limoncello', 'Hagyományos olasz citromlikőr', 1390, NULL, 'Ital', 1, '2026-02-02 11:19:16'),
-(192, 32, 'Montepulciano d’Abruzzo', 'Gyümölcsös olasz vörösbor (1 dl)', 1190, NULL, 'Bor', 1, '2026-02-02 11:19:16'),
-(193, 32, 'Vermentino di Sardegna', 'Ásványos, citrusos olasz fehérbor (1 dl)', 1290, NULL, 'Bor', 1, '2026-02-02 11:19:16');
+(162, 32, 'Burrata al Tartufo', 'Krémes burrata friss szarvasgombával és extra szűz olívaolajjal', 3490, '/img/EtelKepek/Burrata.png', 'Előétel', 1, '2026-02-02 11:19:16'),
+(163, 32, 'Vitello Tonnato', 'Vékonyra szeletelt borjúhús tonhalas-kapris krémmel', 3690, '/img/EtelKepek/Vitello.png', 'Előétel', 1, '2026-02-02 11:19:16'),
+(164, 32, 'Caponata Siciliana', 'Szicíliai édes-savanyú padlizsánragu zöldségekkel', 2990, '/img/EtelKepek/Caponata.png', 'Előétel', 1, '2026-02-02 11:19:16'),
+(165, 32, 'Frittelle di Baccalà', 'Ropogós tőkehalfalatok citromos aiolival', 3290, '/img/EtelKepek/Bacatta.png', 'Előétel', 1, '2026-02-02 11:19:16'),
+(166, 32, 'Insalata di Polpo', 'Citromos-olívaolajos polipsaláta friss petrezselyemmel', 3890, '/img/EtelKepek/Insalata.png', 'Előétel', 1, '2026-02-02 11:19:16'),
+(167, 32, 'Arancini al Ragù', 'Sicíliai töltött rizsgolyók húsos paradicsommártással', 3190, '/img/EtelKepek/Arancini.png', 'Előétel', 1, '2026-02-02 11:19:16'),
+(168, 32, 'Pappardelle al Cinghiale', 'Széles metélt házi vadmalacraguval', 5490, '/img/EtelKepek/Pappardelle.png', 'Főétel', 1, '2026-02-02 11:19:16'),
+(169, 32, 'Risotto al Nero di Seppia', 'Tintahalas rizottó tintahal tintájával', 5290, '/img/EtelKepek/Risotto.png', 'Főétel', 1, '2026-02-02 11:19:16'),
+(170, 32, 'Orecchiette con Cime di Rapa', 'Pugliai tészta brokkolirabe-val és szardellával', 4690, '/img/EtelKepek/Orecchiette.png', 'Főétel', 1, '2026-02-02 11:19:16'),
+(171, 32, 'Gnocchi alla Sorrentina', 'Paradicsomszósz, mozzarella és friss bazsalikom', 4790, '/img/EtelKepek/Gnocchi.png', 'Főétel', 1, '2026-02-02 11:19:16'),
+(172, 32, 'Spaghetti alla Bottarga', 'Szardíniai tészta szárított ikrával és citromhéjjal', 5190, '/img/EtelKepek/spaghetti.png', 'Főétel', 1, '2026-02-02 11:19:16'),
+(173, 32, 'Lasagna Bianca ai Funghi', 'Fehér lasagne erdei gombákkal és besamellel', 5090, '/img/EtelKepek/Lasagne.png', 'Főétel', 1, '2026-02-02 11:19:16'),
+(174, 32, 'Saltimbocca alla Romana', 'Borjúkaraj prosciuttóval és zsályával', 5790, '/img/EtelKepek/Saltimbocca.png', 'Főétel', 1, '2026-02-02 11:19:16'),
+(175, 32, 'Pollo alla Cacciatora', 'Vadász módra készült csirke boros-paradicsomos mártásban', 5190, '/img/EtelKepek/Pollo.png', 'Főétel', 1, '2026-02-02 11:19:16'),
+(176, 32, 'Ossobuco alla Milanese', 'Hosszan párolt borjúlábszár gremolatával', 6990, '/img/EtelKepek/Ossobuco.png', 'Főétel', 1, '2026-02-02 11:19:16'),
+(177, 32, 'Branzino al Forno', 'Egészben sült tengeri sügér citrommal', 6490, '/img/EtelKepek/Branzino.png', 'Főétel', 1, '2026-02-02 11:19:16'),
+(178, 32, 'Margherita DOP', 'San Marzano paradicsom, bivalymozzarella, bazsalikom', 3790, '/img/EtelKepek/MargheritaDop.png', 'Pizza', 1, '2026-02-02 11:19:16'),
+(179, 32, 'Diavola', 'Csípős szalámi, paradicsomszósz és mozzarella', 4290, '/img/EtelKepek/Diavola.png', 'Pizza', 1, '2026-02-02 11:19:16'),
+(180, 32, 'Pizza Gorgonzola e Pere', 'Gorgonzola, körte és dió fehér alapon', 4990, '/img/EtelKepek/Gorgonzola.png', 'Pizza', 1, '2026-02-02 11:19:16'),
+(181, 32, 'Salsiccia e Friarielli', 'Olasz kolbász és brokkolirabe nápolyi stílusban', 5190, '/img/EtelKepek/Salsiccia.png', 'Pizza', 1, '2026-02-02 11:19:16'),
+(182, 32, 'Tiramisu Classico', 'Mascarponés krém kávéval és kakaóval', 2890, '/img/EtelKepek/Tiramisu2.png', 'Desszert', 1, '2026-02-02 11:19:16'),
+(183, 32, 'Torta Caprese', 'Lisztmentes csokoládés-mandulás torta', 2690, '/img/EtelKepek/TortaCaprese.png', 'Desszert', 1, '2026-02-02 11:19:16'),
+(184, 32, 'Cannoli Siciliani', 'Ropogós cső ricottakrémmel és pisztáciával', 2990, '/img/EtelKepek/Sicilian.png', 'Desszert', 1, '2026-02-02 11:19:16'),
+(185, 32, 'Panna Cotta al Pistacchio', 'Pisztáciás panna cotta', 2790, '/img/EtelKepek/PannaCotta.png', 'Desszert', 1, '2026-02-02 11:19:16'),
+(186, 32, 'Affogato al Caffè', 'Vaníliafagylalt forró eszpresszóval', 2490, '/img/EtelKepek/Affogato.png', 'Desszert', 1, '2026-02-02 11:19:16'),
+(187, 32, 'Espresso Italiano', 'Olasz eszpresszó', 690, '/img/EtelKepek/Italian.png', 'Ital', 1, '2026-02-02 11:19:16'),
+(188, 32, 'Cappuccino', 'Eszpresszó gőzölt tejhabbal', 890, '/img/EtelKepek/Cappuccino.png', 'Ital', 1, '2026-02-02 11:19:16'),
+(189, 32, 'Aperol Spritz', 'Aperol, prosecco és szóda', 1990, '/img/EtelKepek/AperolSpritz2.png', 'Ital', 1, '2026-02-02 11:19:16'),
+(190, 32, 'Campari Soda', 'Campari szódával', 1790, '/img/EtelKepek/Campari.png', 'Ital', 1, '2026-02-02 11:19:16'),
+(191, 32, 'Limoncello', 'Hagyományos olasz citromlikőr', 1390, '/img/EtelKepek/Limoncello.png', 'Ital', 1, '2026-02-02 11:19:16'),
+(192, 32, 'Montepulciano d’Abruzzo', 'Gyümölcsös olasz vörösbor (1 dl)', 1190, '/img/EtelKepek/Montepulciano.png', 'Bor', 1, '2026-02-02 11:19:16'),
+(193, 32, 'Vermentino di Sardegna', 'Ásványos, citrusos olasz fehérbor (1 dl)', 1290, '/img/EtelKepek/Vermentino.png', 'Bor', 1, '2026-02-02 11:19:16');
 
 -- --------------------------------------------------------
 
