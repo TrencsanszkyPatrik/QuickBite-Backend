@@ -1,12 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "YtVzZjRfGkqYR8LqUaO6UX/TrrHgFNXX95lz2VBwfks=",
-  "Source": "quickbiteback",
-  "BasePath": "_content/quickbiteback",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
-}
+{"Version":1,"Hash":"YtVzZjRfGkqYR8LqUaO6UX/TrrHgFNXX95lz2VBwfks=","Source":"quickbiteback","BasePath":"_content/quickbiteback","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

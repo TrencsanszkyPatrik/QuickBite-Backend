@@ -93,7 +93,7 @@ public class ProfileController : ControllerBase
         if (user == null)
             return NotFound();
 
-        var reviewsCount = await _context.reviews.CountAsync(r => r.user_id == userId.Value);
+        var reviewsCount = await _context.quickbitereviews.CountAsync(r => r.Name == user.name);
         var dto = await BuildProfileResponseAsync(userId.Value, user, reviewsCount);
         return Ok(dto);
     }
