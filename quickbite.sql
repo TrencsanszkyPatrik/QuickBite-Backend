@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 03. 10:54
+-- Létrehozás ideje: 2026. Feb 03. 12:33
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `name` text NOT NULL,
   `icon` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `categories`
@@ -43,10 +43,11 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 INSERT INTO `categories` (`id`, `name`, `icon`) VALUES
 (1, 'Olasz', '🍝'),
-(2, 'Magyar', '🫕'),
+(2, 'Magyar', '🍲'),
 (3, 'Pub', '🍺'),
 (4, 'Ázsiai', '🍜'),
-(5, 'Mexikói', '🌮');
+(5, 'Mexikói', '🌮'),
+(6, 'Görög', '🥙');
 
 -- --------------------------------------------------------
 
@@ -74,16 +75,26 @@ CREATE TABLE IF NOT EXISTS `coupons` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`),
   KEY `restaurant_id` (`restaurant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `coupons`
 --
 
 INSERT INTO `coupons` (`id`, `code`, `description`, `discount_type`, `discount_value`, `min_order_amount`, `max_discount_amount`, `usage_limit`, `usage_count`, `per_user_limit`, `valid_from`, `valid_until`, `is_active`, `restaurant_id`, `created_at`) VALUES
-(1, 'WELCOME20', 'Első rendeléshez 20% kedvezmény', 'percentage', 20.00, 3000.00, 2000.00, NULL, 0, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 09:39:29'),
-(2, 'FREESHIP', 'Ingyenes szállítás 5000 Ft felett', 'fixed_amount', 500.00, 5000.00, NULL, NULL, 0, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 09:39:29'),
-(3, 'SUMMER1000', '1000 Ft kedvezmény', 'fixed_amount', 1000.00, 4000.00, NULL, 100, 0, 1, '2026-06-01 00:00:00', '2026-08-31 00:00:00', 1, NULL, '2026-02-03 09:39:29');
+(17, 'MARTIN99', 'Martin speciális kuponja – 99% kedvezmény', 'percentage', 99.00, 2000.00, 99999999.99, 100, 1, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(18, 'PATRIK99', 'Patrik speciális kuponja – 99% kedvezmény', 'percentage', 99.00, 2000.00, 99999999.99, 100, 0, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(19, 'DANI99', 'Dani speciális kuponja – 99% kedvezmény', 'percentage', 99.00, 2000.00, 99999999.99, 100, 0, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(20, 'WELCOME10', '10% kedvezmény első rendelésre', 'percentage', 10.00, 2500.00, 2000.00, 5000, 0, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(21, 'WELCOME20', '20% kedvezmény új felhasználóknak', 'percentage', 20.00, 4000.00, 3000.00, 2000, 0, 1, '2026-01-01 00:00:00', '2026-06-30 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(22, 'ORDER15', '15% kedvezmény bármely rendelésre', 'percentage', 15.00, 3500.00, 2500.00, 3000, 0, 1, '2026-01-01 00:00:00', '2026-05-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(23, 'BIGORDER25', '25% kedvezmény nagy rendelés esetén', 'percentage', 25.00, 8000.00, 5000.00, 1000, 0, 1, '2026-02-01 00:00:00', '2026-07-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(24, 'WEEKEND10', '10% hétvégi kedvezmény', 'percentage', 10.00, 3000.00, 1800.00, 4000, 0, 2, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(25, 'NIGHTEAT15', '15% kedvezmény esti rendelésre', 'percentage', 15.00, 3000.00, 2200.00, 2000, 0, 1, '2026-01-15 00:00:00', '2026-06-30 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(26, 'SPRING20', '20% tavaszi akció', 'percentage', 20.00, 4500.00, 3500.00, 1500, 0, 1, '2026-03-01 00:00:00', '2026-05-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(27, 'SUMMER15', '15% nyári kedvezmény', 'percentage', 15.00, 4000.00, 3000.00, 2000, 0, 1, '2026-06-01 00:00:00', '2026-08-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(28, 'LOYAL10', '10% kedvezmény visszatérő vásárlóknak', 'percentage', 10.00, 2500.00, 2000.00, 5000, 0, 5, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(29, 'FLASH30', '30% villámakció – limitált ideig', 'percentage', 30.00, 5000.00, 4000.00, 300, 0, 1, '2026-02-01 00:00:00', '2026-02-15 00:00:00', 1, NULL, '2026-02-03 12:22:35');
 
 -- --------------------------------------------------------
 
@@ -102,7 +113,14 @@ CREATE TABLE IF NOT EXISTS `coupon_usages` (
   PRIMARY KEY (`id`),
   KEY `coupon_id` (`coupon_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `coupon_usages`
+--
+
+INSERT INTO `coupon_usages` (`id`, `coupon_id`, `user_id`, `order_id`, `discount_amount`, `used_at`) VALUES
+(2, 17, 4, NULL, 48014.01, '2026-02-03 12:26:42');
 
 -- --------------------------------------------------------
 
@@ -123,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `idx_menu_items_restaurant_id` (`restaurant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=245 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `menu_items`
@@ -321,7 +339,58 @@ INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`,
 (190, 32, 'Campari Soda', 'Campari szódával', 1790, '/img/EtelKepek/Campari.png', 'Ital', 1, '2026-02-02 11:19:16'),
 (191, 32, 'Limoncello', 'Hagyományos olasz citromlikőr', 1390, '/img/EtelKepek/Limoncello.png', 'Ital', 1, '2026-02-02 11:19:16'),
 (192, 32, 'Montepulciano d’Abruzzo', 'Gyümölcsös olasz vörösbor (1 dl)', 1190, '/img/EtelKepek/Montepulciano.png', 'Bor', 1, '2026-02-02 11:19:16'),
-(193, 32, 'Vermentino di Sardegna', 'Ásványos, citrusos olasz fehérbor (1 dl)', 1290, '/img/EtelKepek/Vermentino.png', 'Bor', 1, '2026-02-02 11:19:16');
+(193, 32, 'Vermentino di Sardegna', 'Ásványos, citrusos olasz fehérbor (1 dl)', 1290, '/img/EtelKepek/Vermentino.png', 'Bor', 1, '2026-02-02 11:19:16'),
+(194, 34, 'Tzatziki pita kenyérrel', 'Hagyományos joghurtos uborkakrém friss pitával.', 1490, 'img/EtelKepek/default.jpg', 'Előétel', 1, '2026-02-03 11:49:50'),
+(195, 34, 'Dolmades', 'Szőlőlevélbe töltött fűszeres rizs joghurtos mártogatóssal.', 1690, 'img/EtelKepek/default.jpg', 'Előétel', 1, '2026-02-03 11:49:50'),
+(196, 34, 'Feta saganaki', 'Rántott feta sajt szezámmaggal és mézzel.', 1790, 'img/EtelKepek/default.jpg', 'Előétel', 1, '2026-02-03 11:49:50'),
+(197, 34, 'Görög saláta', 'Paradicsom, uborka, olívabogyó, feta sajt.', 1990, 'img/EtelKepek/default.jpg', 'Saláta', 1, '2026-02-03 11:49:50'),
+(198, 34, 'Mediterrán csirkesaláta', 'Grillezett csirkemell, friss zöldségek, olívaolaj.', 2490, 'img/EtelKepek/default.jpg', 'Saláta', 1, '2026-02-03 11:49:50'),
+(199, 34, 'Csirkés gyros pitában', 'Grillezett csirkehús, tzatziki, friss zöldségek.', 2790, 'img/EtelKepek/default.jpg', 'Főétel', 1, '2026-02-03 11:49:50'),
+(200, 34, 'Sertés gyros pitában', 'Fűszeres sertéshús klasszikus görög módra.', 2890, 'img/EtelKepek/default.jpg', 'Főétel', 1, '2026-02-03 11:49:50'),
+(201, 34, 'Gyros tál csirkéből', 'Csirkegyros sült krumplival és salátával.', 3290, 'img/EtelKepek/default.jpg', 'Főétel', 1, '2026-02-03 11:49:50'),
+(202, 34, 'Gyros tál sertésből', 'Sertésgyros pitával és házi szósszal.', 3390, 'img/EtelKepek/default.jpg', 'Főétel', 1, '2026-02-03 11:49:50'),
+(203, 34, 'Csirkés souvlaki', 'Nyárson grillezett csirkemell steak körettel.', 3590, 'img/EtelKepek/default.jpg', 'Főétel', 1, '2026-02-03 11:49:50'),
+(204, 34, 'Sertés souvlaki', 'Pácolt sertéshús nyárson, görög fűszerekkel.', 3690, 'img/EtelKepek/default.jpg', 'Főétel', 1, '2026-02-03 11:49:50'),
+(205, 34, 'Moussaka', 'Padlizsános rakott étel darált hússal és besamellel.', 3490, 'img/EtelKepek/default.jpg', 'Főétel', 1, '2026-02-03 11:49:50'),
+(206, 34, 'Grillezett halloumi tál', 'Pirított halloumi sajt salátával és pitával.', 3290, 'img/EtelKepek/default.jpg', 'Főétel', 1, '2026-02-03 11:49:50'),
+(207, 34, 'Baklava', 'Réteslapos sütemény dióval és mézzel.', 1590, 'img/EtelKepek/default.jpg', 'Desszert', 1, '2026-02-03 11:49:50'),
+(208, 34, 'Galaktoboureko', 'Grízes krémmel töltött sütemény citromos sziruppal.', 1690, 'img/EtelKepek/default.jpg', 'Desszert', 1, '2026-02-03 11:49:50'),
+(209, 34, 'Görög joghurt mézzel és dióval', 'Könnyű, friss desszert.', 1390, 'img/EtelKepek/default.jpg', 'Desszert', 1, '2026-02-03 11:49:50'),
+(210, 34, 'Narancsos görög sütemény', 'Szirupos narancsos piskóta.', 1490, 'img/EtelKepek/default.jpg', 'Desszert', 1, '2026-02-03 11:49:50'),
+(211, 34, 'Mythos sör 0,33l', 'Eredeti görög világos sör.', 1290, 'img/EtelKepek/default.jpg', 'Alkoholos ital', 1, '2026-02-03 11:49:50'),
+(212, 34, 'Ouzo 4cl', 'Hagyományos ánizsos görög párlat.', 1190, 'img/EtelKepek/default.jpg', 'Alkoholos ital', 1, '2026-02-03 11:49:50'),
+(213, 34, 'Görög vörösbor 1dl', 'Száraz, testes görög bor.', 1090, 'img/EtelKepek/default.jpg', 'Alkoholos ital', 1, '2026-02-03 11:49:50'),
+(214, 34, 'Coca-Cola 0,33l', 'Szénsavas üdítőital.', 690, 'img/EtelKepek/default.jpg', 'Üdítő', 1, '2026-02-03 11:49:50'),
+(215, 34, 'Fanta Narancs 0,33l', 'Narancsízű szénsavas üdítő.', 690, 'img/EtelKepek/default.jpg', 'Üdítő', 1, '2026-02-03 11:49:50'),
+(216, 34, 'Ásványvíz 0,5l', 'Szénsavmentes ásványvíz.', 590, 'img/EtelKepek/default.jpg', 'Üdítő', 1, '2026-02-03 11:49:50'),
+(217, 33, 'Souvlaki', 'Grillezett hús nyárs, friss pita kenyérrel, tzatziki szósszal és salátával.', 1500, 'https://example.com/images/souvlaki.jpg', 'Előétel', 1, '2026-02-03 12:10:07'),
+(218, 33, 'Tzatziki', 'Görög joghurt, uborka, fokhagyma, olívaolaj és friss fűszerek keveréke.', 800, 'https://example.com/images/tzatziki.jpg', 'Előétel', 1, '2026-02-03 12:10:07'),
+(219, 33, 'Dolmadakia', 'Szőlőlevelekbe tekert rizses töltelék, fűszerezve kaporral, fokhagymával, és citromlével.', 1200, 'https://example.com/images/dolmadakia.jpg', 'Előétel', 1, '2026-02-03 12:10:07'),
+(220, 33, 'Spanakopita', 'Görög spenótos pite phyllo tésztában, feta sajttal és friss fűszerekkel töltve.', 1400, 'https://example.com/images/spanakopita.jpg', 'Előétel', 1, '2026-02-03 12:10:07'),
+(221, 33, 'Keftedes', 'Görög húsgombócok, fűszeres paradicsom szósszal, friss pita kenyérrel.', 1600, 'https://example.com/images/keftedes.jpg', 'Előétel', 1, '2026-02-03 12:10:07'),
+(222, 33, 'Saganaki', 'Olvasztott feta sajt, olívaolajjal és friss citromlével tálalva.', 1800, 'https://example.com/images/saganaki.jpg', 'Előétel', 1, '2026-02-03 12:10:07'),
+(223, 33, 'Moussaka', 'Rakott padlizsán, darált hús, béchamel mártás, friss fűszerekkel.', 2500, 'https://example.com/images/moussaka.jpg', 'Főétel', 1, '2026-02-03 12:10:07'),
+(224, 33, 'Gyro', 'Friss pita, grillezett hús (csirke vagy sertés), tzatziki és zöldségek.', 2000, 'https://example.com/images/gyro.jpg', 'Főétel', 1, '2026-02-03 12:10:07'),
+(225, 33, 'Kleftiko', 'Török eredetű, lassan sült bárányhús, citrommal, fokhagymával, olívaolajjal, és friss fűszerekkel.', 3000, 'https://example.com/images/kleftiko.jpg', 'Főétel', 1, '2026-02-03 12:10:07'),
+(226, 33, 'Pastitsio', 'Hagyományos görög rakott tészta, darált húsos raguval és béchamellel.', 2200, 'https://example.com/images/pastitsio.jpg', 'Főétel', 1, '2026-02-03 12:10:07'),
+(227, 33, 'Kalamari', 'Grillezett vagy ropogósra sült tintahal, citromos-olívaolajos öntettel.', 2500, 'https://example.com/images/kalamari.jpg', 'Főétel', 1, '2026-02-03 12:10:07'),
+(228, 33, 'Souvlaki Platter', 'Nyársra húzott grillezett húsok (csirke, sertés, bárány), friss saláta és tzatziki.', 2800, 'https://example.com/images/souvlaki_platter.jpg', 'Főétel', 1, '2026-02-03 12:10:07'),
+(229, 33, 'Greek Village Salad (Horiatiki)', 'Friss zöldségek, feta sajt, kalamata olíva, oregánó és olívaolaj.', 1500, 'https://example.com/images/horiatiki.jpg', 'Saláta', 1, '2026-02-03 12:10:07'),
+(230, 33, 'Fattoush Saláta', 'Színes zöldségek, pirított pita, citromos öntet, friss fűszerekkel.', 1600, 'https://example.com/images/fattoush.jpg', 'Saláta', 1, '2026-02-03 12:10:07'),
+(231, 33, 'Tabbouleh Saláta', 'Finomra vágott petrezselyem, bulgur, paradicsom, uborka és friss menta.', 1700, 'https://example.com/images/tabbouleh.jpg', 'Saláta', 1, '2026-02-03 12:10:07'),
+(232, 33, 'Baklava', 'Phyllo tésztában sült, dióval, mézzel és fahéjjal.', 1200, 'https://example.com/images/baklava.jpg', 'Desszert', 1, '2026-02-03 12:10:07'),
+(233, 33, 'Loukoumades', 'Görög fánk, mézzel és fahéjjal megöntözve, apró adagokban tálalva.', 1300, 'https://example.com/images/loukoumades.jpg', 'Desszert', 1, '2026-02-03 12:10:07'),
+(234, 33, 'Galaktoboureko', 'Krémes tejpuding phyllo tésztában, sziruppal leöntve.', 1500, 'https://example.com/images/galaktoboureko.jpg', 'Desszert', 1, '2026-02-03 12:10:07'),
+(235, 33, 'Kataifi', 'Édes, csavart tészták, belül dióval, kívül cukros sziruppal.', 1400, 'https://example.com/images/kataifi.jpg', 'Desszert', 1, '2026-02-03 12:10:07'),
+(236, 33, 'Rizogalo', 'Görög rizs puding, fahéjjal és citromhéjjal ízesítve.', 1000, 'https://example.com/images/rizogalo.jpg', 'Desszert', 1, '2026-02-03 12:10:07'),
+(237, 33, 'Ouzo', 'Klasszikus görög anízos ital, jéggel vagy vízzel.', 1500, 'https://example.com/images/ouzo.jpg', 'Italok', 1, '2026-02-03 12:17:06'),
+(238, 33, 'Retsina', 'Hagyományos görög bor, fenyőgyanta ízesítéssel.', 2000, 'https://example.com/images/retsina.jpg', 'Italok', 1, '2026-02-03 12:17:06'),
+(239, 33, 'Metaxa', 'Görög brandy, aromás fűszerekkel és mézzel.', 2500, 'https://example.com/images/metaxa.jpg', 'Italok', 1, '2026-02-03 12:17:06'),
+(240, 33, 'Frappe', 'Jégkockával készített, habosított, erős görög kávé.', 1000, 'https://example.com/images/frappe.jpg', 'Italok', 1, '2026-02-03 12:17:06'),
+(241, 33, 'Ásványvíz', 'Szénsavas vagy szénsavmentes ásványvíz.', 1500, 'https://example.com/images/ouzo.jpg', 'Italok', 1, '2026-02-03 12:17:06'),
+(242, 33, 'Pepsi', 'Hideg Pepsi', 1500, 'https://example.com/images/ouzo.jpg', 'Italok', 1, '2026-02-03 12:17:06'),
+(243, 33, 'Sprite', 'Hideg Sprite', 1500, 'https://example.com/images/ouzo.jpg', 'Italok', 1, '2026-02-03 12:17:06'),
+(244, 33, 'Görög Sör (Alfa)', 'Friss, aromás görög sör, tökéletes választás étkezés mellé.', 1200, 'https://example.com/images/alfa.jpg', 'Italok', 1, '2026-02-03 12:17:06');
 
 -- --------------------------------------------------------
 
@@ -338,7 +407,7 @@ CREATE TABLE IF NOT EXISTS `quickbite_reviews` (
   `stars` tinyint(4) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `quickbite_reviews`
@@ -361,7 +430,8 @@ INSERT INTO `quickbite_reviews` (`id`, `username`, `name`, `text`, `stars`, `cre
 (25, 'korizoltan1965', 'Kori Zoltán', 'A webshop modern megjelenésű és jól átlátható, a rendelés leadása gyors és egyszerű. Az ételek részletesen vannak bemutatva, a felület pedig gördülékenyen működik. Kellemes élmény az online rendelés.', 5, '2026-01-26 10:59:01'),
 (26, 'padmin', 'Patrik Admin', 'Nagyon szuper weboldal!', 5, '2026-01-26 13:46:58'),
 (27, 'korizoltan1965', 'Kori Zoltán', 'Nagyon elégedett voltam mindennel!', 5, '2026-01-26 16:25:51'),
-(28, 'madmin', 'Martin Papa', 'Ez az oldal maga a jövő! Tökéletes, precíz weboldal nagyon hasznos funkcióval!', 5, '2026-01-27 10:30:13');
+(28, 'madmin', 'Martin Papa', 'Ez az oldal maga a jövő! Tökéletes, precíz weboldal nagyon hasznos funkcióval!', 5, '2026-01-27 10:30:13'),
+(29, 'madmin', 'Martin Papa', 'Kurva nagy oldal tiszta vagány', 5, '2026-02-03 10:58:02');
 
 -- --------------------------------------------------------
 
@@ -388,7 +458,7 @@ CREATE TABLE IF NOT EXISTS `restaurants` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `idx_restaurants_cuisine_id` (`cuisine_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `restaurants`
@@ -406,7 +476,9 @@ INSERT INTO `restaurants` (`id`, `name`, `address`, `city`, `description`, `desc
 (21, 'Tűzhely Kávézó & Bisztro', 'Városház tér 3.', 'Miskolc', 'Reggeli-brunch specialitások, házi lepények, könnyű ebéd fogások délután.', 'A Tűzhely Kávézó & Bisztro nem csupán egy hely, ahol reggelit vagy ebédet fogyasztasz – igazi kis oázis a város szívében, ahol a nap bármely szakában otthonosan érzed magad, mintha csak egy jó barát konyhájába léptél volna be.', '+36709876543', '/img/etteremkepek/tuzhely-kavezo-bisztro.jpg', 25, 0, 0, 3, 120, 11, '2026-01-27 10:57:14'),
 (30, 'Hajnali Wok & Bao', 'Liszt Ferenc utca 23.', 'Győr', 'Ázsiai fúziós étterem választékos bao, okonomiyaki, matcha ételekkel.', 'Éttermünk az ázsiai konyha legjavát hozza el egy modern, barátságos környezetben. Kínai, thai és japán ízek találkoznak friss alapanyagokból, gondosan elkészítve. Legyen szó gyors ebédről vagy nyugodt vacsoráról, nálunk az autentikus fűszerezés és a különleges fogások igazi kulináris élményt nyújtanak minden vendég számára.', '+36309876543', '/img/etteremkepek/hajnali-wok-bao.jpg', 10, 0, 1, 4, 47, 19, '2026-01-27 11:09:31'),
 (31, 'Sabores Perdidos', 'Domb utca 73.', 'Debrecen', 'Autentikus mexikói ízek - taco, enchilada, guacamole, margarita.', 'Éttermünk a mexikói konyha tüzes és színes világába repít. Friss tortillák, szaftos húsok, pikáns szószok és autentikus fűszerek gondoskodnak az igazi latin hangulatról. Legyen szó baráti vacsoráról vagy családi ebédről, nálunk minden fogás tele van ízzel, szenvedéllyel és életörömmel.', '+36304567890', '/img/etteremkepek/sabores-perdidos.jpg', 12, 1, 1, 5, 47, 19, '2026-01-27 11:18:45'),
-(32, 'La Strada Italiana', 'Széchenyi István út 38.', 'Miskolc', 'Klasszikus olasz konyha friss alapanyagokból – pizza, pasta, risotto, tiramisu.', 'A La Strada Italiana egy hangulatos olasz étterem Miskolc szívében, ahol a hagyományos olasz receptek állnak a középpontban. Fatüzelésű kemencében sült pizzák, házi készítésű tészták, krémes rizottók és eredeti olasz desszertek várják a vendégeket ebédtől késő estig.', '+36201234567', '/img/etteremkepek/la-strada-italiana.jpg', 10, 1, 1, 1, 48, 20, '2026-01-27 12:15:00');
+(32, 'La Strada Italiana', 'Széchenyi István út 38.', 'Miskolc', 'Klasszikus olasz konyha friss alapanyagokból – pizza, pasta, risotto, tiramisu.', 'A La Strada Italiana egy hangulatos olasz étterem Miskolc szívében, ahol a hagyományos olasz receptek állnak a középpontban. Fatüzelésű kemencében sült pizzák, házi készítésű tészták, krémes rizottók és eredeti olasz desszertek várják a vendégeket ebédtől késő estig.', '+36201234567', '/img/etteremkepek/la-strada-italiana.jpg', 10, 1, 1, 1, 48, 20, '2026-01-27 12:15:00'),
+(33, 'Greek Freak', '123 Görög Utca', 'Budapest', 'Autentikus görög ízek közvetlenül a város szívében.', 'A Greek Freak a valódi görög ízeket hozza el, tradicionális ételekkel, mint a souvlaki és moussaka, egy hangulatos és vibráló környezetben.', '+36 1 234 5678', '/img/etteremkepek/greekfreak.jpg', 15, 1, 1, 6, 47, 19, '2026-02-03 11:39:14'),
+(34, 'Mythos Greek Kitchen', 'Széchenyi István út 12.', 'Miskolc', 'Autentikus görög konyha modern köntösben.', 'A Mythos Greek Kitchen a klasszikus görög ízeket ötvözi modern street food elemekkel. Gyrosok, souvlakik, friss tengeri fogások és házi készítésű szószok várják vendégeinket Miskolc belvárosában.', '+3646123456', '/img/etteremkepek/mythos.jpg', 15, 1, 1, 6, 48, 21, '2026-02-03 11:39:38');
 
 -- --------------------------------------------------------
 
