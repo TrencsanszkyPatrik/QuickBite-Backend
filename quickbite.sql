@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 03. 13:14
+-- Létrehozás ideje: 2026. Feb 04. 09:25
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `coupons` (
 INSERT INTO `coupons` (`id`, `code`, `description`, `discount_type`, `discount_value`, `min_order_amount`, `max_discount_amount`, `usage_limit`, `usage_count`, `per_user_limit`, `valid_from`, `valid_until`, `is_active`, `restaurant_id`, `created_at`) VALUES
 (17, 'MARTIN99', 'Martin speciális kuponja – 99% kedvezmény', 'percentage', 99.00, 2000.00, 99999999.99, 100, 1, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
 (18, 'PATRIK99', 'Patrik speciális kuponja – 99% kedvezmény', 'percentage', 99.00, 2000.00, 99999999.99, 100, 0, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
-(19, 'DANI99', 'Dani speciális kuponja – 99% kedvezmény', 'percentage', 99.00, 2000.00, 99999999.99, 100, 0, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
+(19, 'DANI99', 'Dani speciális kuponja – 99% kedvezmény', 'percentage', 99.00, 2000.00, 99999999.99, 100, 1, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
 (20, 'WELCOME10', '10% kedvezmény első rendelésre', 'percentage', 10.00, 2500.00, 2000.00, 5000, 0, 1, '2026-01-01 00:00:00', '2026-12-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
 (21, 'WELCOME20', '20% kedvezmény új felhasználóknak', 'percentage', 20.00, 4000.00, 3000.00, 2000, 0, 1, '2026-01-01 00:00:00', '2026-06-30 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
 (22, 'ORDER15', '15% kedvezmény bármely rendelésre', 'percentage', 15.00, 3500.00, 2500.00, 3000, 0, 1, '2026-01-01 00:00:00', '2026-05-31 00:00:00', 1, NULL, '2026-02-03 12:22:35'),
@@ -113,14 +113,15 @@ CREATE TABLE IF NOT EXISTS `coupon_usages` (
   PRIMARY KEY (`id`),
   KEY `coupon_id` (`coupon_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `coupon_usages`
 --
 
 INSERT INTO `coupon_usages` (`id`, `coupon_id`, `user_id`, `order_id`, `discount_amount`, `used_at`) VALUES
-(2, 17, 4, NULL, 48014.01, '2026-02-03 12:26:42');
+(2, 17, 4, NULL, 48014.01, '2026-02-03 12:26:42'),
+(3, 19, 5, NULL, 8286.30, '2026-02-04 09:23:30');
 
 -- --------------------------------------------------------
 
@@ -395,6 +396,77 @@ INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`,
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL DEFAULT 'pending',
+  `delivery_full_name` text NOT NULL,
+  `delivery_address` text NOT NULL,
+  `delivery_city` varchar(100) NOT NULL,
+  `delivery_zip` varchar(10) NOT NULL,
+  `delivery_phone` varchar(30) NOT NULL,
+  `delivery_instructions` text DEFAULT NULL,
+  `payment_method` varchar(50) NOT NULL,
+  `subtotal` int(11) NOT NULL,
+  `delivery_fee` int(11) NOT NULL,
+  `discount` int(11) NOT NULL DEFAULT 0,
+  `coupon_code` varchar(50) DEFAULT NULL,
+  `total` int(11) NOT NULL,
+  `restaurant_name` text NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_orders_user_id` (`user_id`),
+  KEY `idx_orders_restaurant_id` (`restaurant_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- A tábla adatainak kiíratása `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `restaurant_id`, `status`, `delivery_full_name`, `delivery_address`, `delivery_city`, `delivery_zip`, `delivery_phone`, `delivery_instructions`, `payment_method`, `subtotal`, `delivery_fee`, `discount`, `coupon_code`, `total`, `restaurant_name`, `created_at`) VALUES
+(1, 5, 2, 'pending', 'Berzi Dániel', 'Klapka György utca 26', 'Budapest', '1154', '+36706712794', NULL, 'cash', 1290, 499, 0, NULL, 1789, 'Végállomás Bistorant', '2026-02-04 09:14:26'),
+(2, 5, 33, 'pending', 'Berzi Dániel', 'Klapka György utca 26', 'Budapest', '1046', '+36706712794', NULL, 'cash', 9800, 0, 0, NULL, 9800, 'Greek Freak', '2026-02-04 09:24:22'),
+(3, 5, 33, 'pending', 'Berzi Dániel', 'Klapka György utca 26', 'Budapest', '1046', '+36706712794', NULL, 'cash', 5200, 0, 5148, 'DANI99', 52, 'Greek Freak', '2026-02-04 09:24:48');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `order_items`
+--
+
+DROP TABLE IF EXISTS `order_items`;
+CREATE TABLE IF NOT EXISTS `order_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
+  `menu_item_id` int(11) DEFAULT NULL,
+  `item_name` text NOT NULL,
+  `item_price` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `item_image_url` text DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_order_items_order_id` (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- A tábla adatainak kiíratása `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `menu_item_id`, `item_name`, `item_price`, `quantity`, `item_image_url`) VALUES
+(1, 1, NULL, 'Dobos torta', 1290, 1, '/img/EtelKepek/dobostorta.jpg'),
+(2, 2, NULL, 'Görög Sör (Alfa)', 1200, 4, '/img/EtelKepek/alfa.png'),
+(3, 2, NULL, 'Metaxa', 2500, 2, '/img/EtelKepek/metaxa.png'),
+(4, 3, NULL, 'Metaxa', 2500, 1, '/img/EtelKepek/metaxa.png'),
+(5, 3, NULL, 'Görög Sör (Alfa)', 1200, 1, '/img/EtelKepek/alfa.png'),
+(6, 3, NULL, 'Ouzo', 1500, 1, '/img/EtelKepek/ouzo2.png');
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `quickbite_reviews`
 --
 
@@ -529,7 +601,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `zip_code` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`(255))
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `users`
@@ -538,7 +610,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `phone`, `avatar_url`, `address_line`, `city`, `zip_code`) VALUES
 (1, 'Kori Zoltán', 'korizoltan1965@gmail.com', '$2a$12$B8l0hyERs92Larf2AYaDwe28jq.vpzoBt4QlsGr8jC6P72T1zOoGm', '2026-01-26', NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 'Patrik', 'padmin@gmail.com', '$2a$12$rmexQsjZ84ZxCq05dLndHOJ6VTfeIaXznnRaQ5teZMokFj79lNYIW', '2026-01-26', '2026-02-03 08:35:18', NULL, 'https://wiki.trashforum.org/images/thumb/b/b2/2929.jpg/300px-2929.jpg', NULL, NULL, NULL),
-(4, 'Martin Papa', 'madmin@gmail.com', '$2a$12$SsuWLRHghFfd4IIOEaiUAOGdoNCe/J2sHEhGGndCl7Fh9e9B0Yq1.', '2026-01-26', '2026-01-26 15:38:01', NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRksQSQeMKU32MNydXZtXPew-vGqk53_WDlVw&s', NULL, NULL, NULL);
+(4, 'Martin Papa', 'madmin@gmail.com', '$2a$12$SsuWLRHghFfd4IIOEaiUAOGdoNCe/J2sHEhGGndCl7Fh9e9B0Yq1.', '2026-01-26', '2026-01-26 15:38:01', NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRksQSQeMKU32MNydXZtXPew-vGqk53_WDlVw&s', NULL, NULL, NULL),
+(5, 'Berzi Dániel', 'berzid@kkszki.hu', '$2a$12$Z5nMWiz//K9GQd1pBW71/eLYTOCgiU/Bm4f7SKVV0S.2TEcA7wlCG', '2026-02-04', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -613,6 +686,19 @@ ALTER TABLE `coupon_usages`
 --
 ALTER TABLE `menu_items`
   ADD CONSTRAINT `fk_menu_items_restaurants` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Megkötések a táblához `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `fk_orders_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`),
+  ADD CONSTRAINT `fk_orders_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Megkötések a táblához `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `fk_order_items_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
 
 --
 -- Megkötések a táblához `restaurants`
