@@ -54,4 +54,7 @@ public partial class users
 
     [InverseProperty("user")]
     public virtual ICollection<user_payment_methods> user_payment_methods { get; set; } = new List<user_payment_methods>();
+
+    [InverseProperty("user")]
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

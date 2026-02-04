@@ -26,6 +26,8 @@ namespace quickbiteback.Models
         public virtual DbSet<menu_items> menu_items { get; set; }
         public virtual DbSet<Coupons> Coupons { get; set; }
         public virtual DbSet<CouponUsages> CouponUsages { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
 
         // === CONNECTION STRING ===
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -153,6 +155,40 @@ namespace quickbiteback.Models
                     .WithMany(p => p.menu_items)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("fk_menu_items_restaurant");
+            });
+
+            // ---- orders ----
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.HasKey(e => e.id).HasName("PRIMARY");
+
+                entity.ToTable("orders");
+
+                entity.Property(e => e.created_at)
+                    .HasDefaultValueSql("'current_timestamp()'");
+
+                entity.HasOne(d => d.user)
+                    .WithMany(p => p.Orders)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("fk_orders_user");
+
+                entity.HasOne(d => d.restaurant)
+                    .WithMany(p => p.Orders)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("fk_orders_restaurant");
+            });
+
+            // ---- order_items ----
+            modelBuilder.Entity<OrderItem>(entity =>
+            {
+                entity.HasKey(e => e.id).HasName("PRIMARY");
+
+                entity.ToTable("order_items");
+
+                entity.HasOne(d => d.order)
+                    .WithMany(p => p.OrderItems)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("fk_order_items_order");
             });
 
             OnModelCreatingPartial(modelBuilder);

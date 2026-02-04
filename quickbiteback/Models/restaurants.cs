@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -61,4 +61,7 @@ public partial class restaurants
 
     [InverseProperty("restaurant")]
     public virtual ICollection<menu_items> menu_items { get; set; } = new List<menu_items>();
+
+    [InverseProperty("restaurant")]
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }
