@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\berzid\\Desktop\\quickbite\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj": {}
+    "C:\\Users\\Trencsanszkyp\\Desktop\\QUICKBITE\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj": {}
   },
   "projects": {
-    "C:\\Users\\berzid\\Desktop\\quickbite\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj": {
+    "C:\\Users\\Trencsanszkyp\\Desktop\\QUICKBITE\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\berzid\\Desktop\\quickbite\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj",
+        "projectUniqueName": "C:\\Users\\Trencsanszkyp\\Desktop\\QUICKBITE\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj",
         "projectName": "quickbiteback",
-        "projectPath": "C:\\Users\\berzid\\Desktop\\quickbite\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj",
-        "packagesPath": "C:\\Users\\berzid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\berzid\\Desktop\\quickbite\\QuickBite-Backend\\quickbiteback\\obj\\",
+        "projectPath": "C:\\Users\\Trencsanszkyp\\Desktop\\QUICKBITE\\QuickBite-Backend\\quickbiteback\\quickbiteback.csproj",
+        "packagesPath": "C:\\Users\\Trencsanszkyp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Trencsanszkyp\\Desktop\\QUICKBITE\\QuickBite-Backend\\quickbiteback\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\berzid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Trencsanszkyp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

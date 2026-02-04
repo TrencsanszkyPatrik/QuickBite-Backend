@@ -20,8 +20,8 @@ public partial class reviews
     [Column(TypeName = "int(11)")]
     public int restaurant_id { get; set; }
 
-    [Column(TypeName = "tinyint(4)")]
-    public sbyte rating { get; set; }
+    [Column(TypeName = "decimal(2,1)")]
+    public decimal rating { get; set; }
 
     [Column(TypeName = "text")]
     public string? comment { get; set; }

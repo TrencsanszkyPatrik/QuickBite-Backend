@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 04. 09:25
+-- Létrehozás ideje: 2026. Feb 04. 10:00
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -422,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   PRIMARY KEY (`id`),
   KEY `idx_orders_user_id` (`user_id`),
   KEY `idx_orders_restaurant_id` (`restaurant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- A tábla adatainak kiíratása `orders`
@@ -431,7 +431,8 @@ CREATE TABLE IF NOT EXISTS `orders` (
 INSERT INTO `orders` (`id`, `user_id`, `restaurant_id`, `status`, `delivery_full_name`, `delivery_address`, `delivery_city`, `delivery_zip`, `delivery_phone`, `delivery_instructions`, `payment_method`, `subtotal`, `delivery_fee`, `discount`, `coupon_code`, `total`, `restaurant_name`, `created_at`) VALUES
 (1, 5, 2, 'pending', 'Berzi Dániel', 'Klapka György utca 26', 'Budapest', '1154', '+36706712794', NULL, 'cash', 1290, 499, 0, NULL, 1789, 'Végállomás Bistorant', '2026-02-04 09:14:26'),
 (2, 5, 33, 'pending', 'Berzi Dániel', 'Klapka György utca 26', 'Budapest', '1046', '+36706712794', NULL, 'cash', 9800, 0, 0, NULL, 9800, 'Greek Freak', '2026-02-04 09:24:22'),
-(3, 5, 33, 'pending', 'Berzi Dániel', 'Klapka György utca 26', 'Budapest', '1046', '+36706712794', NULL, 'cash', 5200, 0, 5148, 'DANI99', 52, 'Greek Freak', '2026-02-04 09:24:48');
+(3, 5, 33, 'pending', 'Berzi Dániel', 'Klapka György utca 26', 'Budapest', '1046', '+36706712794', NULL, 'cash', 5200, 0, 5148, 'DANI99', 52, 'Greek Freak', '2026-02-04 09:24:48'),
+(4, 3, 31, 'pending', 'Patrik', 'Mars tér', 'Szeged', '6724', '+36706353553', NULL, 'cash', 2400, 499, 0, NULL, 2899, 'Sabores Perdidos', '2026-02-04 09:46:36');
 
 -- --------------------------------------------------------
 
@@ -450,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   `item_image_url` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_order_items_order_id` (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- A tábla adatainak kiíratása `order_items`
@@ -462,7 +463,8 @@ INSERT INTO `order_items` (`id`, `order_id`, `menu_item_id`, `item_name`, `item_
 (3, 2, NULL, 'Metaxa', 2500, 2, '/img/EtelKepek/metaxa.png'),
 (4, 3, NULL, 'Metaxa', 2500, 1, '/img/EtelKepek/metaxa.png'),
 (5, 3, NULL, 'Görög Sör (Alfa)', 1200, 1, '/img/EtelKepek/alfa.png'),
-(6, 3, NULL, 'Ouzo', 1500, 1, '/img/EtelKepek/ouzo2.png');
+(6, 3, NULL, 'Ouzo', 1500, 1, '/img/EtelKepek/ouzo2.png'),
+(7, 4, NULL, 'Arroz con leche mexicano', 2400, 1, '/img/EtelKepek/ArrozCon.png');
 
 -- --------------------------------------------------------
 
@@ -563,22 +565,108 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
-  `rating` tinyint(4) NOT NULL,
+  `rating` decimal(2,1) NOT NULL,
   `comment` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `idx_reviews_user_id` (`user_id`),
   KEY `idx_reviews_restaurant_id` (`restaurant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `reviews`
 --
 
 INSERT INTO `reviews` (`id`, `user_id`, `restaurant_id`, `rating`, `comment`, `created_at`) VALUES
-(1, 1, 1, 5, 'Fantasztikus tészták és kedves személyzet.', '2025-12-04 06:51:21'),
-(3, 3, 3, 5, 'Klassz sörök, remek hangulat.', '2025-12-04 06:51:21'),
-(4, 1, 4, 4, 'Tipikus magyar fogások, nagy adagok.', '2025-12-04 06:51:21');
+(1, 1, 1, 5.0, 'Fantasztikus tészták és kedves személyzet.', '2025-12-04 06:51:21'),
+(3, 3, 3, 5.0, 'Klassz sörök, remek hangulat.', '2025-12-04 06:51:21'),
+(4, 1, 4, 4.0, 'Tipikus magyar fogások, nagy adagok.', '2025-12-04 06:51:21'),
+(5, 3, 1, 1.0, NULL, '2026-02-04 08:52:37'),
+(6, 3, 2, 1.0, NULL, '2026-02-04 08:54:01'),
+(7, 3, 34, 4.5, NULL, '2026-02-04 09:00:03'),
+-- Étterem 1 további értékelések
+(8, 4, 1, 4.5, NULL, '2026-01-15 10:30:00'),
+(9, 5, 1, 5.0, NULL, '2026-01-20 14:15:00'),
+(10, 1, 1, 3.5, NULL, '2026-01-25 18:45:00'),
+(11, 4, 1, 4.0, NULL, '2026-02-01 12:00:00'),
+-- Étterem 2 értékelések
+(12, 1, 2, 4.5, NULL, '2026-01-10 09:20:00'),
+(13, 4, 2, 3.5, NULL, '2026-01-18 16:30:00'),
+(14, 5, 2, 4.0, NULL, '2026-01-22 11:45:00'),
+(15, 1, 2, 5.0, NULL, '2026-01-28 19:10:00'),
+(16, 4, 2, 4.5, NULL, '2026-02-02 13:25:00'),
+-- Étterem 3 értékelések
+(17, 1, 3, 4.0, NULL, '2026-01-12 10:00:00'),
+(18, 4, 3, 4.5, NULL, '2026-01-19 15:20:00'),
+(19, 5, 3, 3.5, NULL, '2026-01-24 17:40:00'),
+(20, 1, 3, 5.0, NULL, '2026-01-30 20:15:00'),
+(21, 4, 3, 4.0, NULL, '2026-02-03 14:30:00'),
+-- Étterem 4 értékelések
+(22, 3, 4, 3.5, NULL, '2026-01-11 11:15:00'),
+(23, 5, 4, 4.5, NULL, '2026-01-17 13:40:00'),
+(24, 3, 4, 4.0, NULL, '2026-01-23 16:20:00'),
+(25, 5, 4, 5.0, NULL, '2026-01-29 19:50:00'),
+(26, 3, 4, 3.0, NULL, '2026-02-04 10:30:00'),
+-- Étterem 17 értékelések
+(27, 1, 17, 4.5, NULL, '2026-01-14 12:30:00'),
+(28, 3, 17, 5.0, NULL, '2026-01-20 15:45:00'),
+(29, 4, 17, 4.0, NULL, '2026-01-26 18:20:00'),
+(30, 5, 17, 4.5, NULL, '2026-02-01 11:10:00'),
+(31, 1, 17, 3.5, NULL, '2026-02-03 14:55:00'),
+-- Étterem 18 értékelések
+(32, 3, 18, 3.0, NULL, '2026-01-13 09:40:00'),
+(33, 4, 18, 4.0, NULL, '2026-01-19 12:15:00'),
+(34, 5, 18, 3.5, NULL, '2026-01-25 16:30:00'),
+(35, 1, 18, 4.5, NULL, '2026-01-31 19:20:00'),
+(36, 3, 18, 4.0, NULL, '2026-02-02 13:45:00'),
+-- Étterem 19 értékelések
+(37, 4, 19, 5.0, NULL, '2026-01-16 10:25:00'),
+(38, 5, 19, 4.5, NULL, '2026-01-22 14:50:00'),
+(39, 1, 19, 4.0, NULL, '2026-01-28 17:35:00'),
+(40, 3, 19, 5.0, NULL, '2026-02-03 20:10:00'),
+(41, 4, 19, 3.5, NULL, '2026-02-04 11:40:00'),
+-- Étterem 20 értékelések
+(42, 5, 20, 4.0, NULL, '2026-01-15 13:20:00'),
+(43, 1, 20, 3.5, NULL, '2026-01-21 16:45:00'),
+(44, 3, 20, 4.5, NULL, '2026-01-27 19:15:00'),
+(45, 4, 20, 4.0, NULL, '2026-02-02 12:30:00'),
+(46, 5, 20, 5.0, NULL, '2026-02-04 15:20:00'),
+-- Étterem 21 értékelések
+(47, 1, 21, 3.0, NULL, '2026-01-14 11:50:00'),
+(48, 3, 21, 3.5, NULL, '2026-01-20 14:25:00'),
+(49, 4, 21, 4.0, NULL, '2026-01-26 17:40:00'),
+(50, 5, 21, 3.5, NULL, '2026-02-01 20:15:00'),
+(51, 1, 21, 4.5, NULL, '2026-02-03 13:00:00'),
+-- Étterem 30 értékelések
+(52, 3, 30, 4.5, NULL, '2026-01-12 10:30:00'),
+(53, 4, 30, 5.0, NULL, '2026-01-18 13:45:00'),
+(54, 5, 30, 4.0, NULL, '2026-01-24 16:20:00'),
+(55, 1, 30, 4.5, NULL, '2026-01-30 19:35:00'),
+(56, 3, 30, 3.5, NULL, '2026-02-02 12:10:00'),
+-- Étterem 31 értékelések
+(57, 4, 31, 4.0, NULL, '2026-01-13 09:15:00'),
+(58, 5, 31, 4.5, NULL, '2026-01-19 12:40:00'),
+(59, 1, 31, 5.0, NULL, '2026-01-25 15:55:00'),
+(60, 3, 31, 4.0, NULL, '2026-01-31 18:30:00'),
+(61, 4, 31, 3.5, NULL, '2026-02-03 11:20:00'),
+-- Étterem 32 értékelések
+(62, 5, 32, 3.5, NULL, '2026-01-16 14:25:00'),
+(63, 1, 32, 4.0, NULL, '2026-01-22 17:50:00'),
+(64, 3, 32, 3.0, NULL, '2026-01-28 20:15:00'),
+(65, 4, 32, 4.5, NULL, '2026-02-02 13:40:00'),
+(66, 5, 32, 4.0, NULL, '2026-02-04 16:25:00'),
+-- Étterem 33 értékelések
+(67, 1, 33, 5.0, NULL, '2026-01-15 11:35:00'),
+(68, 3, 33, 4.5, NULL, '2026-01-21 14:50:00'),
+(69, 4, 33, 4.0, NULL, '2026-01-27 18:20:00'),
+(70, 5, 33, 5.0, NULL, '2026-02-01 21:10:00'),
+(71, 1, 33, 3.5, NULL, '2026-02-03 12:45:00'),
+-- Étterem 34 értékelések
+(72, 3, 34, 4.0, NULL, '2026-01-14 10:20:00'),
+(73, 4, 34, 3.5, NULL, '2026-01-20 13:35:00'),
+(74, 5, 34, 4.5, NULL, '2026-01-26 16:50:00'),
+(75, 1, 34, 4.0, NULL, '2026-02-01 19:25:00'),
+(76, 3, 34, 5.0, NULL, '2026-02-03 14:40:00');
 
 -- --------------------------------------------------------
 
@@ -609,7 +697,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `phone`, `avatar_url`, `address_line`, `city`, `zip_code`) VALUES
 (1, 'Kori Zoltán', 'korizoltan1965@gmail.com', '$2a$12$B8l0hyERs92Larf2AYaDwe28jq.vpzoBt4QlsGr8jC6P72T1zOoGm', '2026-01-26', NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Patrik', 'padmin@gmail.com', '$2a$12$rmexQsjZ84ZxCq05dLndHOJ6VTfeIaXznnRaQ5teZMokFj79lNYIW', '2026-01-26', '2026-02-03 08:35:18', NULL, 'https://wiki.trashforum.org/images/thumb/b/b2/2929.jpg/300px-2929.jpg', NULL, NULL, NULL),
+(3, 'Patrik', 'padmin@gmail.com', '$2a$12$rmexQsjZ84ZxCq05dLndHOJ6VTfeIaXznnRaQ5teZMokFj79lNYIW', '2026-01-26', '2026-02-04 08:46:00', '+36706353553', 'https://wiki.trashforum.org/images/thumb/b/b2/2929.jpg/300px-2929.jpg', NULL, NULL, NULL),
 (4, 'Martin Papa', 'madmin@gmail.com', '$2a$12$SsuWLRHghFfd4IIOEaiUAOGdoNCe/J2sHEhGGndCl7Fh9e9B0Yq1.', '2026-01-26', '2026-01-26 15:38:01', NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRksQSQeMKU32MNydXZtXPew-vGqk53_WDlVw&s', NULL, NULL, NULL),
 (5, 'Berzi Dániel', 'berzid@kkszki.hu', '$2a$12$Z5nMWiz//K9GQd1pBW71/eLYTOCgiU/Bm4f7SKVV0S.2TEcA7wlCG', '2026-02-04', NULL, NULL, NULL, NULL, NULL, NULL);
 
@@ -630,14 +718,15 @@ CREATE TABLE IF NOT EXISTS `user_addresses` (
   `is_default` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `idx_user_addresses_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `user_addresses`
 --
 
 INSERT INTO `user_addresses` (`id`, `user_id`, `label`, `address_line`, `city`, `zip_code`, `is_default`) VALUES
-(3, 4, 'Munkahely', 'Mars tér 13, Csillagbörtön', 'Szeged', '6724', 1);
+(3, 4, 'Munkahely', 'Mars tér 13, Csillagbörtön', 'Szeged', '6724', 1),
+(4, 3, 'Otthon', 'Mars tér', 'Szeged', '6724', 1);
 
 -- --------------------------------------------------------
 
@@ -655,14 +744,15 @@ CREATE TABLE IF NOT EXISTS `user_payment_methods` (
   `is_default` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `idx_user_payment_methods_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `user_payment_methods`
 --
 
 INSERT INTO `user_payment_methods` (`id`, `user_id`, `type`, `display_name`, `last_four_digits`, `is_default`) VALUES
-(2, 4, 'cash', 'KÁPÉ', NULL, 1);
+(2, 4, 'cash', 'KÁPÉ', NULL, 1),
+(3, 3, 'cash', 'cash', NULL, 1);
 
 --
 -- Megkötések a kiírt táblákhoz
