@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 04. 10:00
+-- Létrehozás ideje: 2026. Feb 05. 10:11
 -- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.2.12
+-- PHP verzió: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `name` text NOT NULL,
   `icon` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `categories`
@@ -47,7 +47,8 @@ INSERT INTO `categories` (`id`, `name`, `icon`) VALUES
 (3, 'Pub', '🍺'),
 (4, 'Ázsiai', '🍜'),
 (5, 'Mexikói', '🌮'),
-(6, 'Görög', '🥙');
+(6, 'Görög', '🥙'),
+(7, 'Cukrászda', '🎂');
 
 -- --------------------------------------------------------
 
@@ -142,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `idx_menu_items_restaurant_id` (`restaurant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=245 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=273 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `menu_items`
@@ -391,7 +392,35 @@ INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`,
 (241, 33, 'Ásványvíz', 'Szénsavas vagy szénsavmentes ásványvíz.', 1500, '/img/EtelKepek/asvanyviz2.png', 'Italok', 1, '2026-02-03 12:17:06'),
 (242, 33, 'Pepsi', 'Hideg Pepsi', 1500, '/img/EtelKepek/popsi.png', 'Italok', 1, '2026-02-03 12:17:06'),
 (243, 33, 'Sprite', 'Hideg Sprite', 1500, '/img/EtelKepek/sprite.png', 'Italok', 1, '2026-02-03 12:17:06'),
-(244, 33, 'Görög Sör (Alfa)', 'Friss, aromás görög sör, tökéletes választás étkezés mellé.', 1200, '/img/EtelKepek/alfa.png', 'Alkoholos italok', 1, '2026-02-03 12:17:06');
+(244, 33, 'Görög Sör (Alfa)', 'Friss, aromás görög sör, tökéletes választás étkezés mellé.', 1200, '/img/EtelKepek/alfa.png', 'Alkoholos italok', 1, '2026-02-03 12:17:06'),
+(245, 35, 'Túrós rétes', 'Klasszikus túrós rétes ropogós réteslappal és vaníliás túrótöltelékkel.', 850, '/img/EtelKepek/turos-retes.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(246, 35, 'Francia krémes', 'Légies vaníliakrém leveles tésztával és porcukros tetővel.', 950, '/img/EtelKepek/francia-kremes.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(247, 35, 'Szedres mézes', 'Mézes lapok között krémes töltelék friss szederrel megbolondítva.', 950, '/img/EtelKepek/szedres-mezes.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(248, 35, 'Puncs szelet', 'Rum aromás puncstészta csokoládébevonattal és puncsmázzal.', 900, '/img/EtelKepek/puncs-szelet.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(249, 35, 'Mignon', 'Apró sütemény fondant bevonattal és puha piskótával.', 750, '/img/EtelKepek/mignon.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(250, 35, 'Dobos torta szelet', 'Klasszikus dobos torta karamell tetővel és csokoládékrémmel.', 1050, '/img/EtelKepek/dobos-szelet.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(251, 35, 'Olasz csoki torta szelet', 'Selymes csokoládékrém és piskóta gazdag kakaós ízvilággal.', 1100, '/img/EtelKepek/olasz-csoki-torta.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(252, 35, 'Sacher torta szelet', 'Baracklekváros csokoládétorta eredeti Sacher stílusban.', 1150, '/img/EtelKepek/sacher-szelet.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(253, 35, 'Rákóczi túrós', 'Túrós sütemény baracklekvárral és habos rácsozott tetővel.', 950, '/img/EtelKepek/rakoczi-turos.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(254, 35, 'Maxi King szelet', 'Krémes csokoládés sütemény ropogós bevonattal, King jelleggel.', 1050, '/img/EtelKepek/maxi-king.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(255, 35, 'Kis linzer (10 dkg)', 'Omlós linzer aprósütemény lekváros töltelékkel.', 650, '/img/EtelKepek/kis-linzer.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(256, 35, 'Néró teasütemény', 'Kakaós teasütemény krémes töltelékkel, klasszikus néró stílusban.', 750, '/img/EtelKepek/nero-teasutemeny.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(257, 35, 'Sós teasütemény (10 dkg)', 'Vegyes sós aprósütemény sajtos és magvas ízekkel.', 650, '/img/EtelKepek/sos-teasutemeny.png', 'Sütemény', 1, '2026-02-05 12:10:07'),
+(258, 35, 'Tejszínes gyümölcs torta (16 szelet)', 'Könnyű tejszínes krém friss gyümölcsökkel, 16 szeletes dobozban.', 13900, '/img/EtelKepek/tejszines-gyumolcs-torta-16.png', 'Torta', 1, '2026-02-05 12:10:07'),
+(259, 35, 'Főzött krémes gyümölcs torta (16 szelet)', 'Főzött vaníliakrém és friss gyümölcsök, 16 szeletes dobozban.', 14500, '/img/EtelKepek/fozott-kremes-gyumolcs-16.png', 'Torta', 1, '2026-02-05 12:10:07'),
+(260, 35, 'Tejszínes csokoládé torta (16 szelet)', 'Habos csokoládékrémmel készült torta, 16 szeletes dobozban.', 14900, '/img/EtelKepek/tejszines-csoki-torta-16.png', 'Torta', 1, '2026-02-05 12:10:07'),
+(261, 35, 'Tejszínes gyümölcs torta (8 szelet)', 'Tejszínes gyümölcstorta kisebb méretben, 8 szeletes dobozban.', 8900, '/img/EtelKepek/tejszines-gyumolcs-torta-8.png', 'Torta', 1, '2026-02-05 12:10:07'),
+(262, 35, 'Dobos torta (16 szelet)', 'Klasszikus dobos torta karamell tetővel, 16 szeletes dobozban.', 15900, '/img/EtelKepek/dobos-torta-16.png', 'Torta', 1, '2026-02-05 12:10:07'),
+(263, 35, 'Espresso', 'Erős, rövid presszókávé frissen őrölt kávéból.', 650, '/img/EtelKepek/espresso.png', 'Kávé', 1, '2026-02-05 12:10:07'),
+(264, 35, 'Cappuccino', 'Krémes cappuccino gőzölt tejhabbal és intenzív aromával.', 850, '/img/EtelKepek/cappuccino.png', 'Kávé', 1, '2026-02-05 12:10:07'),
+(265, 35, 'Americano', 'Hosszú kávé espresso alappal, lágyabb ízvilággal.', 750, '/img/EtelKepek/americano.png', 'Kávé', 1, '2026-02-05 12:10:07'),
+(266, 35, 'Klasszikus forrócsoki', 'Sűrű, csokoládés forró ital tejszínesen tálalva.', 990, '/img/EtelKepek/forrocsoki.png', 'Forró ital', 1, '2026-02-05 12:10:07'),
+(267, 35, 'Chai latte', 'Fűszeres chai tea gőzölt tejjel és édes aromákkal.', 1090, '/img/EtelKepek/chai-latte.png', 'Forró ital', 1, '2026-02-05 12:10:07'),
+(268, 35, 'Matcha Latte', 'Prémium matcha porból készült krémes latte enyhén édeskés ízzel.', 1190, '/img/EtelKepek/matcha-latte.png', 'Matcha Latte', 1, '2026-02-05 12:10:07'),
+(269, 35, 'Zöld tea', 'Könnyű és frissítő zöld tea természetes aromával.', 650, '/img/EtelKepek/zold-tea.png', 'Tea', 1, '2026-02-05 12:10:07'),
+(270, 35, 'Gyümölcsös tea', 'Illatos gyümölcstea erdei gyümölcs vagy barack ízben.', 690, '/img/EtelKepek/gyumolcsos-tea.png', 'Tea', 1, '2026-02-05 12:10:07'),
+(271, 35, 'Epres-citromos limonádé', 'Frissítő limonádé eperrel és citrommal, jéggel tálalva.', 990, '/img/EtelKepek/eper-citrom-limonade.png', 'Limonádé', 1, '2026-02-05 12:10:07'),
+(272, 35, 'Málnás-mentás limonádé', 'Üdítő limonádé málna és friss menta kombinációjával.', 990, '/img/EtelKepek/malna-menta-limonade.png', 'Limonádé', 1, '2026-02-05 12:10:07');
 
 -- --------------------------------------------------------
 
@@ -532,7 +561,7 @@ CREATE TABLE IF NOT EXISTS `restaurants` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `idx_restaurants_cuisine_id` (`cuisine_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `restaurants`
@@ -552,7 +581,8 @@ INSERT INTO `restaurants` (`id`, `name`, `address`, `city`, `description`, `desc
 (31, 'Sabores Perdidos', 'Domb utca 73.', 'Debrecen', 'Autentikus mexikói ízek - taco, enchilada, guacamole, margarita.', 'Éttermünk a mexikói konyha tüzes és színes világába repít. Friss tortillák, szaftos húsok, pikáns szószok és autentikus fűszerek gondoskodnak az igazi latin hangulatról. Legyen szó baráti vacsoráról vagy családi ebédről, nálunk minden fogás tele van ízzel, szenvedéllyel és életörömmel.', '+36304567890', '/img/etteremkepek/sabores-perdidos.jpg', 12, 1, 1, 5, 47, 19, '2026-01-27 11:18:45'),
 (32, 'La Strada Italiana', 'Széchenyi István út 38.', 'Miskolc', 'Klasszikus olasz konyha friss alapanyagokból – pizza, pasta, risotto, tiramisu.', 'A La Strada Italiana egy hangulatos olasz étterem Miskolc szívében, ahol a hagyományos olasz receptek állnak a középpontban. Fatüzelésű kemencében sült pizzák, házi készítésű tészták, krémes rizottók és eredeti olasz desszertek várják a vendégeket ebédtől késő estig.', '+36201234567', '/img/etteremkepek/la-strada-italiana.jpg', 10, 1, 1, 1, 48, 20, '2026-01-27 12:15:00'),
 (33, 'Greek Freak', '123 Görög Utca', 'Budapest', 'Autentikus görög ízek közvetlenül a város szívében.', 'A Greek Freak a valódi görög ízeket hozza el, tradicionális ételekkel, mint a souvlaki és moussaka, egy hangulatos és vibráló környezetben.', '+36 1 234 5678', '/img/etteremkepek/greekfreak.jpg', 15, 1, 1, 6, 47, 19, '2026-02-03 11:39:14'),
-(34, 'Mythos Greek Kitchen', 'Széchenyi István út 12.', 'Miskolc', 'Autentikus görög konyha modern köntösben.', 'A Mythos Greek Kitchen a klasszikus görög ízeket ötvözi modern street food elemekkel. Gyrosok, souvlakik, friss tengeri fogások és házi készítésű szószok várják vendégeinket Miskolc belvárosában.', '+3646123456', '/img/etteremkepek/mythos.jpg', 15, 1, 1, 6, 48, 21, '2026-02-03 11:39:38');
+(34, 'Mythos Greek Kitchen', 'Széchenyi István út 12.', 'Miskolc', 'Autentikus görög konyha modern köntösben.', 'A Mythos Greek Kitchen a klasszikus görög ízeket ötvözi modern street food elemekkel. Gyrosok, souvlakik, friss tengeri fogások és házi készítésű szószok várják vendégeinket Miskolc belvárosában.', '+3646123456', '/img/etteremkepek/mythos.jpg', 15, 1, 1, 6, 48, 21, '2026-02-03 11:39:38'),
+(35, 'Aranyhab Cukrászda & Kávézó', 'Széchenyi István út 45.', 'Miskolc', 'Házias sütemények, kézműves fagylaltok és különleges kávék a belváros szívében.', 'Cukrászdánkat családi vállalkozásként álmodtuk meg, és Miskolc belvárosában nyitottuk meg, a nyüzsgő sétálóutcák közelében, ahol a helyiek és a városba érkező látogatók is könnyen ránk találnak. Modern, mégis otthonos üzlethelyiségünket tágas terasz teszi igazán különlegessé, ami tavasztól őszig kedvelt találkozóhely a belváros szívében.\r\n', '+36701234567', '/img/etteremkepek/aranyhab-cukraszda.png', 10, 0, 1, 7, 48, 21, '2026-02-05 12:00:00');
 
 -- --------------------------------------------------------
 
@@ -571,7 +601,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   PRIMARY KEY (`id`),
   KEY `idx_reviews_user_id` (`user_id`),
   KEY `idx_reviews_restaurant_id` (`restaurant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `reviews`
@@ -582,86 +612,72 @@ INSERT INTO `reviews` (`id`, `user_id`, `restaurant_id`, `rating`, `comment`, `c
 (3, 3, 3, 5.0, 'Klassz sörök, remek hangulat.', '2025-12-04 06:51:21'),
 (4, 1, 4, 4.0, 'Tipikus magyar fogások, nagy adagok.', '2025-12-04 06:51:21'),
 (5, 3, 1, 1.0, NULL, '2026-02-04 08:52:37'),
-(6, 3, 2, 1.0, NULL, '2026-02-04 08:54:01'),
+(6, 3, 2, 5.0, NULL, '2026-02-05 08:30:00'),
 (7, 3, 34, 4.5, NULL, '2026-02-04 09:00:03'),
--- Étterem 1 további értékelések
 (8, 4, 1, 4.5, NULL, '2026-01-15 10:30:00'),
 (9, 5, 1, 5.0, NULL, '2026-01-20 14:15:00'),
 (10, 1, 1, 3.5, NULL, '2026-01-25 18:45:00'),
 (11, 4, 1, 4.0, NULL, '2026-02-01 12:00:00'),
--- Étterem 2 értékelések
 (12, 1, 2, 4.5, NULL, '2026-01-10 09:20:00'),
 (13, 4, 2, 3.5, NULL, '2026-01-18 16:30:00'),
 (14, 5, 2, 4.0, NULL, '2026-01-22 11:45:00'),
 (15, 1, 2, 5.0, NULL, '2026-01-28 19:10:00'),
 (16, 4, 2, 4.5, NULL, '2026-02-02 13:25:00'),
--- Étterem 3 értékelések
 (17, 1, 3, 4.0, NULL, '2026-01-12 10:00:00'),
 (18, 4, 3, 4.5, NULL, '2026-01-19 15:20:00'),
 (19, 5, 3, 3.5, NULL, '2026-01-24 17:40:00'),
 (20, 1, 3, 5.0, NULL, '2026-01-30 20:15:00'),
 (21, 4, 3, 4.0, NULL, '2026-02-03 14:30:00'),
--- Étterem 4 értékelések
 (22, 3, 4, 3.5, NULL, '2026-01-11 11:15:00'),
 (23, 5, 4, 4.5, NULL, '2026-01-17 13:40:00'),
 (24, 3, 4, 4.0, NULL, '2026-01-23 16:20:00'),
 (25, 5, 4, 5.0, NULL, '2026-01-29 19:50:00'),
 (26, 3, 4, 3.0, NULL, '2026-02-04 10:30:00'),
--- Étterem 17 értékelések
 (27, 1, 17, 4.5, NULL, '2026-01-14 12:30:00'),
 (28, 3, 17, 5.0, NULL, '2026-01-20 15:45:00'),
 (29, 4, 17, 4.0, NULL, '2026-01-26 18:20:00'),
 (30, 5, 17, 4.5, NULL, '2026-02-01 11:10:00'),
 (31, 1, 17, 3.5, NULL, '2026-02-03 14:55:00'),
--- Étterem 18 értékelések
 (32, 3, 18, 3.0, NULL, '2026-01-13 09:40:00'),
 (33, 4, 18, 4.0, NULL, '2026-01-19 12:15:00'),
 (34, 5, 18, 3.5, NULL, '2026-01-25 16:30:00'),
 (35, 1, 18, 4.5, NULL, '2026-01-31 19:20:00'),
 (36, 3, 18, 4.0, NULL, '2026-02-02 13:45:00'),
--- Étterem 19 értékelések
 (37, 4, 19, 5.0, NULL, '2026-01-16 10:25:00'),
 (38, 5, 19, 4.5, NULL, '2026-01-22 14:50:00'),
 (39, 1, 19, 4.0, NULL, '2026-01-28 17:35:00'),
 (40, 3, 19, 5.0, NULL, '2026-02-03 20:10:00'),
 (41, 4, 19, 3.5, NULL, '2026-02-04 11:40:00'),
--- Étterem 20 értékelések
 (42, 5, 20, 4.0, NULL, '2026-01-15 13:20:00'),
 (43, 1, 20, 3.5, NULL, '2026-01-21 16:45:00'),
 (44, 3, 20, 4.5, NULL, '2026-01-27 19:15:00'),
 (45, 4, 20, 4.0, NULL, '2026-02-02 12:30:00'),
 (46, 5, 20, 5.0, NULL, '2026-02-04 15:20:00'),
--- Étterem 21 értékelések
 (47, 1, 21, 3.0, NULL, '2026-01-14 11:50:00'),
 (48, 3, 21, 3.5, NULL, '2026-01-20 14:25:00'),
 (49, 4, 21, 4.0, NULL, '2026-01-26 17:40:00'),
 (50, 5, 21, 3.5, NULL, '2026-02-01 20:15:00'),
 (51, 1, 21, 4.5, NULL, '2026-02-03 13:00:00'),
--- Étterem 30 értékelések
 (52, 3, 30, 4.5, NULL, '2026-01-12 10:30:00'),
 (53, 4, 30, 5.0, NULL, '2026-01-18 13:45:00'),
 (54, 5, 30, 4.0, NULL, '2026-01-24 16:20:00'),
 (55, 1, 30, 4.5, NULL, '2026-01-30 19:35:00'),
 (56, 3, 30, 3.5, NULL, '2026-02-02 12:10:00'),
--- Étterem 31 értékelések
 (57, 4, 31, 4.0, NULL, '2026-01-13 09:15:00'),
 (58, 5, 31, 4.5, NULL, '2026-01-19 12:40:00'),
 (59, 1, 31, 5.0, NULL, '2026-01-25 15:55:00'),
 (60, 3, 31, 4.0, NULL, '2026-01-31 18:30:00'),
 (61, 4, 31, 3.5, NULL, '2026-02-03 11:20:00'),
--- Étterem 32 értékelések
 (62, 5, 32, 3.5, NULL, '2026-01-16 14:25:00'),
 (63, 1, 32, 4.0, NULL, '2026-01-22 17:50:00'),
 (64, 3, 32, 3.0, NULL, '2026-01-28 20:15:00'),
 (65, 4, 32, 4.5, NULL, '2026-02-02 13:40:00'),
 (66, 5, 32, 4.0, NULL, '2026-02-04 16:25:00'),
--- Étterem 33 értékelések
 (67, 1, 33, 5.0, NULL, '2026-01-15 11:35:00'),
 (68, 3, 33, 4.5, NULL, '2026-01-21 14:50:00'),
 (69, 4, 33, 4.0, NULL, '2026-01-27 18:20:00'),
 (70, 5, 33, 5.0, NULL, '2026-02-01 21:10:00'),
 (71, 1, 33, 3.5, NULL, '2026-02-03 12:45:00'),
--- Étterem 34 értékelések
 (72, 3, 34, 4.0, NULL, '2026-01-14 10:20:00'),
 (73, 4, 34, 3.5, NULL, '2026-01-20 13:35:00'),
 (74, 5, 34, 4.5, NULL, '2026-01-26 16:50:00'),
