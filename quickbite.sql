@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 05. 10:11
+-- Létrehozás ideje: 2026. Feb 05. 10:21
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.0.30
 
@@ -451,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   PRIMARY KEY (`id`),
   KEY `idx_orders_user_id` (`user_id`),
   KEY `idx_orders_restaurant_id` (`restaurant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- A tábla adatainak kiíratása `orders`
@@ -461,7 +461,8 @@ INSERT INTO `orders` (`id`, `user_id`, `restaurant_id`, `status`, `delivery_full
 (1, 5, 2, 'pending', 'Berzi Dániel', 'Klapka György utca 26', 'Budapest', '1154', '+36706712794', NULL, 'cash', 1290, 499, 0, NULL, 1789, 'Végállomás Bistorant', '2026-02-04 09:14:26'),
 (2, 5, 33, 'pending', 'Berzi Dániel', 'Klapka György utca 26', 'Budapest', '1046', '+36706712794', NULL, 'cash', 9800, 0, 0, NULL, 9800, 'Greek Freak', '2026-02-04 09:24:22'),
 (3, 5, 33, 'pending', 'Berzi Dániel', 'Klapka György utca 26', 'Budapest', '1046', '+36706712794', NULL, 'cash', 5200, 0, 5148, 'DANI99', 52, 'Greek Freak', '2026-02-04 09:24:48'),
-(4, 3, 31, 'pending', 'Patrik', 'Mars tér', 'Szeged', '6724', '+36706353553', NULL, 'cash', 2400, 499, 0, NULL, 2899, 'Sabores Perdidos', '2026-02-04 09:46:36');
+(4, 3, 31, 'pending', 'Patrik', 'Mars tér', 'Szeged', '6724', '+36706353553', NULL, 'cash', 2400, 499, 0, NULL, 2899, 'Sabores Perdidos', '2026-02-04 09:46:36'),
+(5, 3, 35, 'pending', 'Patrik', 'Mars tér', 'Szeged', '6724', '+36706353553', NULL, 'cash', 11800, 499, 0, NULL, 12299, 'Aranyhab Cukrászda & Kávézó', '2026-02-05 10:14:01');
 
 -- --------------------------------------------------------
 
@@ -480,7 +481,7 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   `item_image_url` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_order_items_order_id` (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- A tábla adatainak kiíratása `order_items`
@@ -493,7 +494,11 @@ INSERT INTO `order_items` (`id`, `order_id`, `menu_item_id`, `item_name`, `item_
 (4, 3, NULL, 'Metaxa', 2500, 1, '/img/EtelKepek/metaxa.png'),
 (5, 3, NULL, 'Görög Sör (Alfa)', 1200, 1, '/img/EtelKepek/alfa.png'),
 (6, 3, NULL, 'Ouzo', 1500, 1, '/img/EtelKepek/ouzo2.png'),
-(7, 4, NULL, 'Arroz con leche mexicano', 2400, 1, '/img/EtelKepek/ArrozCon.png');
+(7, 4, NULL, 'Arroz con leche mexicano', 2400, 1, '/img/EtelKepek/ArrozCon.png'),
+(8, 5, NULL, 'Mignon', 750, 1, '/img/EtelKepek/mignon.png'),
+(9, 5, 261, 'Tejszínes gyümölcs torta (8 szelet)', 8900, 1, '/img/EtelKepek/tejszines-gyumolcs-torta-8.png'),
+(10, 5, 251, 'Olasz csoki torta szelet', 1100, 1, '/img/EtelKepek/olasz-csoki-torta.png'),
+(11, 5, 250, 'Dobos torta szelet', 1050, 1, '/img/EtelKepek/dobos-szelet.png');
 
 -- --------------------------------------------------------
 
@@ -601,7 +606,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   PRIMARY KEY (`id`),
   KEY `idx_reviews_user_id` (`user_id`),
   KEY `idx_reviews_restaurant_id` (`restaurant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `reviews`
@@ -682,7 +687,18 @@ INSERT INTO `reviews` (`id`, `user_id`, `restaurant_id`, `rating`, `comment`, `c
 (73, 4, 34, 3.5, NULL, '2026-01-20 13:35:00'),
 (74, 5, 34, 4.5, NULL, '2026-01-26 16:50:00'),
 (75, 1, 34, 4.0, NULL, '2026-02-01 19:25:00'),
-(76, 3, 34, 5.0, NULL, '2026-02-03 14:40:00');
+(76, 3, 34, 5.0, NULL, '2026-02-03 14:40:00'),
+(99, 3, 35, 1.5, NULL, '2026-02-05 09:20:55'),
+(100, 7, 35, 1.5, '', '2026-02-05 12:20:44'),
+(101, 12, 35, 4.0, '', '2026-02-05 13:01:09'),
+(102, 5, 35, 5.0, '', '2026-02-05 13:22:30'),
+(103, 9, 35, 2.0, '', '2026-02-05 14:10:55'),
+(104, 15, 35, 5.0, '', '2026-02-05 14:55:18'),
+(105, 14, 35, 5.0, '', '2026-02-05 15:33:47'),
+(106, 10, 35, 4.0, '', '2026-02-05 15:55:10'),
+(107, 11, 35, 1.0, '', '2026-02-05 16:12:05'),
+(108, 12, 35, 5.0, '', '2026-02-05 16:40:33'),
+(109, 13, 35, 4.5, '', '2026-02-05 17:05:19');
 
 -- --------------------------------------------------------
 
@@ -705,7 +721,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `zip_code` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`(255))
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `users`
@@ -715,7 +731,17 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_a
 (1, 'Kori Zoltán', 'korizoltan1965@gmail.com', '$2a$12$B8l0hyERs92Larf2AYaDwe28jq.vpzoBt4QlsGr8jC6P72T1zOoGm', '2026-01-26', NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 'Patrik', 'padmin@gmail.com', '$2a$12$rmexQsjZ84ZxCq05dLndHOJ6VTfeIaXznnRaQ5teZMokFj79lNYIW', '2026-01-26', '2026-02-04 08:46:00', '+36706353553', 'https://wiki.trashforum.org/images/thumb/b/b2/2929.jpg/300px-2929.jpg', NULL, NULL, NULL),
 (4, 'Martin Papa', 'madmin@gmail.com', '$2a$12$SsuWLRHghFfd4IIOEaiUAOGdoNCe/J2sHEhGGndCl7Fh9e9B0Yq1.', '2026-01-26', '2026-01-26 15:38:01', NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRksQSQeMKU32MNydXZtXPew-vGqk53_WDlVw&s', NULL, NULL, NULL),
-(5, 'Berzi Dániel', 'berzid@kkszki.hu', '$2a$12$Z5nMWiz//K9GQd1pBW71/eLYTOCgiU/Bm4f7SKVV0S.2TEcA7wlCG', '2026-02-04', NULL, NULL, NULL, NULL, NULL, NULL);
+(5, 'Berzi Dániel', 'berzid@kkszki.hu', '$2a$12$Z5nMWiz//K9GQd1pBW71/eLYTOCgiU/Bm4f7SKVV0S.2TEcA7wlCG', '2026-02-04', NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'Anna Kovács', 'anna.kovacs@example.com', 'hashedpassword1', '2026-02-05', '2026-02-05 12:00:00', '+36301234501', '/img/avatars/anna.png', 'Fő utca 12.', 'Miskolc', '3525'),
+(7, 'Bence Nagy', 'bence.nagy@example.com', 'hashedpassword2', '2026-02-05', '2026-02-05 12:05:00', '+36301234502', '/img/avatars/bence.png', 'Petőfi tér 5.', 'Miskolc', '3525'),
+(8, 'Csilla Tóth', 'csilla.toth@example.com', 'hashedpassword3', '2026-02-05', '2026-02-05 12:10:00', '+36301234503', '/img/avatars/csilla.png', 'Széchenyi utca 22.', 'Miskolc', '3525'),
+(9, 'Dávid Horváth', 'david.horvath@example.com', 'hashedpassword4', '2026-02-05', '2026-02-05 12:15:00', '+36301234504', '/img/avatars/david.png', 'Kossuth Lajos utca 3.', 'Miskolc', '3525'),
+(10, 'Eszter Molnár', 'eszter.molnar@example.com', 'hashedpassword5', '2026-02-05', '2026-02-05 12:20:00', '+36301234505', '/img/avatars/eszter.png', 'Kazinczy utca 10.', 'Miskolc', '3525'),
+(11, 'Ferenc Farkas', 'ferenc.farkas@example.com', 'hashedpassword6', '2026-02-05', '2026-02-05 12:25:00', '+36301234506', '/img/avatars/ferenc.png', 'Bartók Béla utca 18.', 'Miskolc', '3525'),
+(12, 'Gitta Varga', 'gitta.varga@example.com', 'hashedpassword7', '2026-02-05', '2026-02-05 12:30:00', '+36301234507', '/img/avatars/gitta.png', 'Ady Endre utca 7.', 'Miskolc', '3525'),
+(13, 'Hunor Szabó', 'hunor.szabo@example.com', 'hashedpassword8', '2026-02-05', '2026-02-05 12:35:00', '+36301234508', '/img/avatars/hunor.png', 'Rákóczi út 9.', 'Miskolc', '3525'),
+(14, 'Irén Kiss', 'iren.kiss@example.com', 'hashedpassword9', '2026-02-05', '2026-02-05 12:40:00', '+36301234509', '/img/avatars/iren.png', 'Petőfi Sándor út 14.', 'Miskolc', '3525'),
+(15, 'János Papp', 'janos.papp@example.com', 'hashedpassword10', '2026-02-05', '2026-02-05 12:45:00', '+36301234510', '/img/avatars/janos.png', 'Deák Ferenc utca 21.', 'Miskolc', '3525');
 
 -- --------------------------------------------------------
 
