@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 05. 10:21
+-- Létrehozás ideje: 2026. Feb 05. 11:58
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.0.30
 
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `idx_menu_items_restaurant_id` (`restaurant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=273 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=352 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `menu_items`
@@ -420,7 +420,57 @@ INSERT INTO `menu_items` (`id`, `restaurant_id`, `name`, `description`, `price`,
 (269, 35, 'Zöld tea', 'Könnyű és frissítő zöld tea természetes aromával.', 650, '/img/EtelKepek/zold-tea.png', 'Tea', 1, '2026-02-05 12:10:07'),
 (270, 35, 'Gyümölcsös tea', 'Illatos gyümölcstea erdei gyümölcs vagy barack ízben.', 690, '/img/EtelKepek/gyumolcsos-tea.png', 'Tea', 1, '2026-02-05 12:10:07'),
 (271, 35, 'Epres-citromos limonádé', 'Frissítő limonádé eperrel és citrommal, jéggel tálalva.', 990, '/img/EtelKepek/eper-citrom-limonade.png', 'Limonádé', 1, '2026-02-05 12:10:07'),
-(272, 35, 'Málnás-mentás limonádé', 'Üdítő limonádé málna és friss menta kombinációjával.', 990, '/img/EtelKepek/malna-menta-limonade.png', 'Limonádé', 1, '2026-02-05 12:10:07');
+(272, 35, 'Málnás-mentás limonádé', 'Üdítő limonádé málna és friss menta kombinációjával.', 990, '/img/EtelKepek/malna-menta-limonade.png', 'Limonádé', 1, '2026-02-05 12:10:07'),
+(302, 36, 'Rántott Csirke Bagett', 'Rántott csirkemell friss zöldségekkel', 3290, '/img/EtelKepek/friedchicken.png', 'Szendvicsek', 1, '2026-02-05 10:52:12'),
+(303, 36, 'BLT Bagett', 'Bacon, saláta és paradicsom pirított kenyérben', 2990, '/img/EtelKepek/BLTbagett.png', 'Szendvicsek', 1, '2026-02-05 10:52:12'),
+(304, 36, 'Steak Bagett', 'Marhasteak, karamellizált hagyma, mustáros szósz', 3790, '/img/EtelKepek/steakbagett.png', 'Szendvicsek', 1, '2026-02-05 10:52:12'),
+(305, 36, 'Grillezett Sajtos Bagett', 'Pirított kenyér olvasztott sajttal', 2490, '/img/EtelKepek/grilledcheese.png', 'Szendvicsek', 1, '2026-02-05 10:52:12'),
+(306, 36, 'Csirkés Caesar Wrap', 'Grillezett csirke, római saláta, caesar öntet', 3190, '/img/EtelKepek/ceasarwrap.png', 'Szendvicsek', 1, '2026-02-05 10:52:12'),
+(307, 36, 'Rántott Mozzarella', 'Rántott mozzarella sajtmártással', 2190, 'images/menu/mozzarella_sticks.jpg', 'Előételek', 1, '2026-02-05 10:52:12'),
+(308, 36, 'Hagymakarikák', 'Ropogós hagymakarikák', 1990, 'images/menu/onion_rings.jpg', 'Előételek', 1, '2026-02-05 10:52:12'),
+(309, 36, 'Csirkeszárnyak', 'Csirkeszárnyak BBQ vagy Buffalo szósszal', 2990, 'images/menu/chicken_wings.jpg', 'Előételek', 1, '2026-02-05 10:52:12'),
+(310, 36, 'Csónakburgonya', 'Fűszeres csónakburgonya', 1790, 'images/menu/potato_wedges.jpg', 'Előételek', 1, '2026-02-05 10:52:12'),
+(311, 36, 'Hasábburgonya', 'Klasszikus hasábburgonya', 1590, 'images/menu/french_fries.jpg', 'Előételek', 1, '2026-02-05 10:52:12'),
+(312, 36, 'Nachos Sajttal', 'Nachos sajtszósszal és jalapenóval', 2490, 'images/menu/nachos.jpg', 'Előételek', 1, '2026-02-05 10:52:12'),
+(313, 36, 'Sajtburesz', 'Marhahúspogácsa, cheddar sajt, saláta', 3590, 'images/menu/cheeseburger.jpg', 'Főételek', 1, '2026-02-05 10:52:12'),
+(314, 36, 'Baconos Sajtburesz', 'Marhahúspogácsa, bacon, cheddar sajt', 3790, 'images/menu/bacon_cheeseburger.jpg', 'Főételek', 1, '2026-02-05 10:52:12'),
+(315, 36, 'Rántott Csirke Burger', 'Rántott csirkemell, majonéz, saláta', 3490, 'images/menu/fried_chicken_burger.jpg', 'Főételek', 1, '2026-02-05 10:52:12'),
+(316, 36, 'DVTK Hamburger', 'Marhahúspogácsa, cheddar, bacon, BBQ szósz, hasábburgonya', 3990, 'images/menu/dvtk_hamburger.jpg', 'Főételek', 1, '2026-02-05 10:52:12'),
+(317, 36, 'BBQ Oldalas', 'BBQ oldalas steak burgonyával', 4890, 'images/menu/bbq_ribs.jpg', 'Főételek', 1, '2026-02-05 10:52:12'),
+(318, 36, 'Grillezett Sertéstarja', 'Grillezett sertéstarja körettel', 4290, 'images/menu/grilled_pork_chop.jpg', 'Főételek', 1, '2026-02-05 10:52:12'),
+(319, 36, 'Fish and Chips', 'Sörtésztás hal hasábburgonyával', 4190, 'images/menu/fish_and_chips.jpg', 'Főételek', 1, '2026-02-05 10:52:12'),
+(320, 36, 'Rántott Csirkemell', 'Rántott csirkemell hasábburgonyával', 3890, 'images/menu/chicken_schnitzel.jpg', 'Főételek', 1, '2026-02-05 10:52:12'),
+(321, 36, 'Csirkés Caesar Saláta', 'Caesar saláta grillezett csirkével', 3190, 'images/menu/caesar_salad.jpg', 'Saláták', 1, '2026-02-05 10:52:12'),
+(322, 36, 'Görög Saláta', 'Paradicsom, uborka, feta sajt', 2890, 'images/menu/greek_salad.jpg', 'Saláták', 1, '2026-02-05 10:52:12'),
+(323, 36, 'Káposztasaláta', 'Klasszikus coleslaw', 1690, 'images/menu/coleslaw.jpg', 'Saláták', 1, '2026-02-05 10:52:12'),
+(324, 36, 'Brownie Vaníliafagyival', 'Csokis brownie vaníliafagyival', 2290, '/img/EtelKepek/browniefagyi.png', 'Desszertek', 1, '2026-02-05 10:52:12'),
+(325, 36, 'Sajttorta', 'Klasszikus sajttorta', 2390, '/img/EtelKepek/sajttorta.png', 'Desszertek', 1, '2026-02-05 10:52:12'),
+(326, 36, 'Palacsinta', 'Palacsinta csokoládéval vagy lekvárral', 1990, '/img/EtelKepek/palacsinta.png', 'Desszertek', 1, '2026-02-05 10:52:12'),
+(327, 36, 'Almás Pite', 'Almás pite vaníliaszósszal', 2190, '/img/EtelKepek/almaspite.png', 'Desszertek', 1, '2026-02-05 10:52:12'),
+(328, 36, 'Fagylaltkehely', 'Vegyes fagylalt kehellyel', 1890, '/img/EtelKepek/fagyikehely.png', 'Desszertek', 1, '2026-02-05 10:52:12'),
+(329, 36, 'Csapolt Borsodi', 'Friss csapolt sör', 890, 'images/menu/borsodi_draft.jpg', 'Sörök', 1, '2026-02-05 11:02:27'),
+(330, 36, 'Csapolt Dreher', 'Friss csapolt sör', 890, 'images/menu/dreher_draft.jpg', 'Sörök', 1, '2026-02-05 11:02:27'),
+(331, 36, 'Csapolt Soproni', 'Friss csapolt sör', 890, 'images/menu/soproni_draft.jpg', 'Sörök', 1, '2026-02-05 11:02:27'),
+(332, 36, 'Heineken üveges', 'Hideg üveges sör', 950, 'images/menu/heineken_bottle.jpg', 'Sörök', 1, '2026-02-05 11:02:27'),
+(333, 36, 'Corona üveges', 'Hideg üveges sör', 1190, 'images/menu/corona_bottle.jpg', 'Sörök', 1, '2026-02-05 11:02:27'),
+(334, 36, 'Guinness üveges', 'Sötét ízesített üveges sör', 1290, 'images/menu/guinness_bottle.jpg', 'Sörök', 1, '2026-02-05 11:02:27'),
+(335, 36, 'Kozel üveges', 'Cseh üveges sör', 990, 'images/menu/kozel_bottle.jpg', 'Sörök', 1, '2026-02-05 11:02:27'),
+(336, 36, 'Alkoholmentes sör', 'Frissítő alkoholmentes sör', 890, 'images/menu/non_alcoholic_beer.jpg', 'Sörök', 1, '2026-02-05 11:02:27'),
+(337, 36, 'Jägermeister', 'Népszerű gyógynövénylikőr', 990, 'images/menu/jagermeister.jpg', 'Röviditalok', 1, '2026-02-05 11:02:27'),
+(338, 36, 'Unicum', 'Magyar gyógynövénylikőr', 990, 'images/menu/unicum.jpg', 'Röviditalok', 1, '2026-02-05 11:02:27'),
+(339, 36, 'Jack Daniel\'s', 'Whiskey', 1190, 'images/menu/jack_daniels.jpg', 'Röviditalok', 1, '2026-02-05 11:02:27'),
+(340, 36, 'Jameson', 'Irish whiskey', 1190, 'images/menu/jameson.jpg', 'Röviditalok', 1, '2026-02-05 11:02:27'),
+(341, 36, 'Finlandia Vodka', 'Vodka', 990, 'images/menu/finlandia_vodka.jpg', 'Röviditalok', 1, '2026-02-05 11:02:27'),
+(342, 36, 'Gin Tonic', 'Gin és tonic', 1490, 'images/menu/gin_tonic.jpg', 'Koktélok', 1, '2026-02-05 11:02:27'),
+(343, 36, 'Whiskey Cola', 'Whiskey és kóla', 1490, 'images/menu/whiskey_cola.jpg', 'Koktélok', 1, '2026-02-05 11:02:27'),
+(344, 36, 'Cuba Libre', 'Rum, cola, lime', 1490, 'images/menu/cuba_libre.jpg', 'Koktélok', 1, '2026-02-05 11:02:27'),
+(345, 36, 'Vodka Narancs', 'Vodka és narancslé', 1490, 'images/menu/vodka_orange.jpg', 'Koktélok', 1, '2026-02-05 11:02:27'),
+(346, 36, 'Coca-Cola', 'Hagyományos kóla', 490, 'images/menu/coca_cola.jpg', 'Üdítők', 1, '2026-02-05 11:02:27'),
+(347, 36, 'Coca-Cola Zero', 'Kalóriamentes kóla', 490, 'images/menu/coca_cola_zero.jpg', 'Üdítők', 1, '2026-02-05 11:02:27'),
+(348, 36, 'Fanta', 'Narancs ízű üdítő', 490, 'images/menu/fanta.jpg', 'Üdítők', 1, '2026-02-05 11:02:27'),
+(349, 36, 'Sprite', 'Citrom-lime ízű üdítő', 490, 'images/menu/sprite.jpg', 'Üdítők', 1, '2026-02-05 11:02:27'),
+(350, 36, 'Tonic Water', 'Tonic ital', 490, 'images/menu/tonic.jpg', 'Üdítők', 1, '2026-02-05 11:02:27'),
+(351, 36, 'Ásványvíz', 'Szénsavas vagy mentes', 390, 'images/menu/mineral_water.jpg', 'Üdítők', 1, '2026-02-05 11:02:27');
 
 -- --------------------------------------------------------
 
@@ -566,7 +616,7 @@ CREATE TABLE IF NOT EXISTS `restaurants` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `idx_restaurants_cuisine_id` (`cuisine_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `restaurants`
@@ -587,7 +637,8 @@ INSERT INTO `restaurants` (`id`, `name`, `address`, `city`, `description`, `desc
 (32, 'La Strada Italiana', 'Széchenyi István út 38.', 'Miskolc', 'Klasszikus olasz konyha friss alapanyagokból – pizza, pasta, risotto, tiramisu.', 'A La Strada Italiana egy hangulatos olasz étterem Miskolc szívében, ahol a hagyományos olasz receptek állnak a középpontban. Fatüzelésű kemencében sült pizzák, házi készítésű tészták, krémes rizottók és eredeti olasz desszertek várják a vendégeket ebédtől késő estig.', '+36201234567', '/img/etteremkepek/la-strada-italiana.jpg', 10, 1, 1, 1, 48, 20, '2026-01-27 12:15:00'),
 (33, 'Greek Freak', '123 Görög Utca', 'Budapest', 'Autentikus görög ízek közvetlenül a város szívében.', 'A Greek Freak a valódi görög ízeket hozza el, tradicionális ételekkel, mint a souvlaki és moussaka, egy hangulatos és vibráló környezetben.', '+36 1 234 5678', '/img/etteremkepek/greekfreak.jpg', 15, 1, 1, 6, 47, 19, '2026-02-03 11:39:14'),
 (34, 'Mythos Greek Kitchen', 'Széchenyi István út 12.', 'Miskolc', 'Autentikus görög konyha modern köntösben.', 'A Mythos Greek Kitchen a klasszikus görög ízeket ötvözi modern street food elemekkel. Gyrosok, souvlakik, friss tengeri fogások és házi készítésű szószok várják vendégeinket Miskolc belvárosában.', '+3646123456', '/img/etteremkepek/mythos.jpg', 15, 1, 1, 6, 48, 21, '2026-02-03 11:39:38'),
-(35, 'Aranyhab Cukrászda & Kávézó', 'Széchenyi István út 45.', 'Miskolc', 'Házias sütemények, kézműves fagylaltok és különleges kávék a belváros szívében.', 'Cukrászdánkat családi vállalkozásként álmodtuk meg, és Miskolc belvárosában nyitottuk meg, a nyüzsgő sétálóutcák közelében, ahol a helyiek és a városba érkező látogatók is könnyen ránk találnak. Modern, mégis otthonos üzlethelyiségünket tágas terasz teszi igazán különlegessé, ami tavasztól őszig kedvelt találkozóhely a belváros szívében.\r\n', '+36701234567', '/img/etteremkepek/aranyhab-cukraszda.png', 10, 0, 1, 7, 48, 21, '2026-02-05 12:00:00');
+(35, 'Aranyhab Cukrászda & Kávézó', 'Széchenyi István út 45.', 'Miskolc', 'Házias sütemények, kézműves fagylaltok és különleges kávék a belváros szívében.', 'Cukrászdánkat családi vállalkozásként álmodtuk meg, és Miskolc belvárosában nyitottuk meg, a nyüzsgő sétálóutcák közelében, ahol a helyiek és a városba érkező látogatók is könnyen ránk találnak. Modern, mégis otthonos üzlethelyiségünket tágas terasz teszi igazán különlegessé, ami tavasztól őszig kedvelt találkozóhely a belváros szívében.\r\n', '+36701234567', '/img/etteremkepek/aranyhab-cukraszda.png', 10, 0, 1, 7, 48, 21, '2026-02-05 12:00:00'),
+(36, 'DVTK Pub', 'Andrássy út 61.', 'Miskolc', 'Sportos hangulatú pub bagettekkel, hamburgerekkel és sörkülönlegességekkel.', 'A DVTK Pub egy sportos, baráti hangulatú vendéglátóhely Miskolc szívében. Kínálatunkban megtalálhatók a klasszikus pub ételek, bagettek, hamburgerek, valamint széles sör- és italválaszték. Ideális hely baráti összejövetelekhez és meccsnézéshez.', '+36 30 123 4567', '/img/etteremkepek/dvtkpub.png\r\n', 10, 0, 1, 3, 48, 21, '2026-02-05 10:39:41');
 
 -- --------------------------------------------------------
 
@@ -606,7 +657,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   PRIMARY KEY (`id`),
   KEY `idx_reviews_user_id` (`user_id`),
   KEY `idx_reviews_restaurant_id` (`restaurant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `reviews`
@@ -698,7 +749,8 @@ INSERT INTO `reviews` (`id`, `user_id`, `restaurant_id`, `rating`, `comment`, `c
 (106, 10, 35, 4.0, '', '2026-02-05 15:55:10'),
 (107, 11, 35, 1.0, '', '2026-02-05 16:12:05'),
 (108, 12, 35, 5.0, '', '2026-02-05 16:40:33'),
-(109, 13, 35, 4.5, '', '2026-02-05 17:05:19');
+(109, 13, 35, 4.5, '', '2026-02-05 17:05:19'),
+(110, 6, 36, 5.0, NULL, '2026-02-05 09:56:27');
 
 -- --------------------------------------------------------
 
